@@ -6,15 +6,17 @@
 
 You can install the package using npm:
 
-\`\`\`bash
+Block code:
+\```
 npm install mui-ethiopian-datepicker
-\`\`\`
+\```
 
 ### Peer Dependencies
 
 The package has the following peer dependencies, which must be installed in your project:
 
-\`\`\`json
+Block code:
+\```
 "devDependencies": {
   "@mui/icons-material": "^5.14.6",
   "@mui/material": "^5.14.6",
@@ -23,19 +25,21 @@ The package has the following peer dependencies, which must be installed in your
   "react": "^18.2.0",
   "react-dom": "^18.2.0"
 }
-\`\`\`
+\```
 
 You can install them using:
 
-\`\`\`bash
+Block code:
+\```
 npm install @mui/icons-material @mui/material @mui/x-date-pickers date-fns react react-dom
-\`\`\`
+\```
 
 ## Usage
 
 Here's a sample code snippet to use the `EtDatePicker` component in your React application:
 
-\`\`\`jsx
+Block code:
+\```
 import React, { useState } from 'react';
 import EtDatePicker from 'mui-ethiopian-datepicker';
 
@@ -56,7 +60,7 @@ function MyComponent() {
     />
   );
 }
-\`\`\`
+\```
 
 ## API
 
