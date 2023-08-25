@@ -9,30 +9,35 @@ import {
 import { useEffect, useState } from "react";
 import EtGrDateCalendar from "./Components/EtGrDateCalendar";
 import React from "react";
-import { DateType, EthiopianDate } from "../../../model/EthiopianDate";
+
 import format from "date-fns/format";
 import { EventOutlined } from "@mui/icons-material";
 import { EtDatePickerProvider } from "./EtDatePickerContext";
+import { DateType, EthiopianDate } from "./util/EthiopianDateUtils";
+import { DatePicker, DatePickerProps } from "@mui/x-date-pickers";
+
+type CustomFieldProps = Omit<
+  React.ComponentProps<typeof TextField>,
+  "onChange" | "value" | "InputProps"
+>;
+
+type DateFieldProps = Pick<
+  React.ComponentProps<typeof DatePicker>,
+  "disablePast" | "disableFuture"
+>;
 
 type EtDatePickerProps = {
   onClick?: () => void;
   value?: Date;
   onChange?: (date: Date) => void;
   onChangeDateType?: (dateType: DateType) => void;
-  disableFuture?: boolean;
-};
-
-type CustomFieldProos = Omit<
-  React.ComponentProps<typeof TextField>,
-  "onChange" | "value" | "InputProps"
->;
-
-const EtDatePicker: React.FC<EtDatePickerProps & CustomFieldProos> = ({
+} & CustomFieldProps &
+  DateFieldProps;
+const EtDatePicker: React.FC<EtDatePickerProps> = ({
   onClick,
   onChangeDateType,
   value,
   onChange,
-  disableFuture,
   ...props
 }) => {
   const [dateType, setDateType] = useState<DateType>("EC");
@@ -121,7 +126,7 @@ const EtDatePicker: React.FC<EtDatePickerProps & CustomFieldProos> = ({
       >
         <EtDatePickerProvider
           onChange={handleDateChange}
-          disableFuture={disableFuture}
+          disableFuture={props.disableFuture}
           value={date}
         >
           <EtGrDateCalendar />

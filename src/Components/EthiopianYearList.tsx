@@ -1,6 +1,7 @@
 import { Grid, Chip, Box } from "@mui/material";
 import React, { useEffect, useRef } from "react";
-import { EthiopianDate } from "../../../../model/EthiopianDate";
+import { EthiopianDate } from "../util/EthiopianDateUtils";
+
 
 type EthiopianYearListProps = {
   startYear?: number;

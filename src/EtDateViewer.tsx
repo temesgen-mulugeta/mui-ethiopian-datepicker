@@ -1,7 +1,7 @@
 import { ButtonBase, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { DateType, EthiopianDate } from "../../../model/EthiopianDate";
 import { format } from "date-fns";
+import { DateType, EthiopianDate } from "./util/EthiopianDateUtils";
 
 type EtDateViewerProps = {
   date: Date;

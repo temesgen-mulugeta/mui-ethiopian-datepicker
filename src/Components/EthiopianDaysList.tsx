@@ -1,7 +1,8 @@
 import { Box, Typography, IconButton } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { EthiopianDate } from "../../../../model/EthiopianDate";
+
 import { EtDatePickerContext } from "../EtDatePickerContext";
+import { EthiopianDate } from "../util/EthiopianDateUtils";
 
 type EthiopianDaysListProps = {
   month: number;
@@ -88,7 +89,7 @@ const EthiopianDaysList: React.FC<EthiopianDaysListProps> = ({
                   month,
                   year
                 );
-                const grDate = EthiopianDate.toJsDate(etDate);
+                const grDate = EthiopianDate.toGreg(etDate);
                 onDateChange(grDate);
               }}
               sx={{

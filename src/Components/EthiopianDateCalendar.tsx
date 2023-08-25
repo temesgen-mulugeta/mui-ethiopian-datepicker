@@ -1,10 +1,11 @@
 import { ArrowDropDown, ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { Box, Stack, Typography, IconButton } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { EthiopianDate } from "../../../../model/EthiopianDate";
+
 import EthiopianYearList from "./EthiopianYearList";
 import EthiopianDaysList from "./EthiopianDaysList";
 import { EtDatePickerContext } from "../EtDatePickerContext";
+import { EthiopianDate } from "../util/EthiopianDateUtils";
 
 const EthiopianDateCalendar = () => {
   const { onDateChange, value } = useContext(EtDatePickerContext);
@@ -70,7 +71,7 @@ const EthiopianDateCalendar = () => {
                 ethDate.Month,
                 selectedYear
               );
-              const grDate = EthiopianDate.toJsDate(etDate);
+              const grDate = EthiopianDate.toGreg(etDate);
               onDateChange(grDate);
             }}
             startYear={ethDate.Year}
