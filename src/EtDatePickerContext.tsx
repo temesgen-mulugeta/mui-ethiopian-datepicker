@@ -1,28 +1,30 @@
 import React, { useState, createContext, ReactNode, useEffect } from "react";
+import { EtDateFieldProps } from "./EtDatePicker";
 
-interface EtDatePickerContextType {
+type EtDatePickerContextType = {
   value: Date;
   onDateChange: (date: Date) => void;
-  disableFuture?: boolean;
-}
+} & EtDateFieldProps;
 
 const EtDatePickerContext = createContext<EtDatePickerContextType>({
   value: new Date(),
   onDateChange: (date) => {},
 });
 
-interface EtDatePickerProviderProps {
+type EtDatePickerProviderProps = {
   children: ReactNode;
   onChange?: (date: Date) => void;
-  disableFuture?: boolean;
   value?: Date;
-}
+} & EtDateFieldProps;
 
 const EtDatePickerProvider: React.FC<EtDatePickerProviderProps> = ({
   children,
   onChange,
-  disableFuture,
   value,
+  disableFuture,
+  disablePast,
+  minDate,
+  maxDate,
 }) => {
   const [date, setDate] = useState<Date>(new Date());
 
@@ -39,7 +41,7 @@ const EtDatePickerProvider: React.FC<EtDatePickerProviderProps> = ({
 
   return (
     <EtDatePickerContext.Provider
-      value={{ value: date, onDateChange, disableFuture }}
+      value={{ value: date, onDateChange, disableFuture, disablePast, minDate, maxDate }}
     >
       {children}
     </EtDatePickerContext.Provider>

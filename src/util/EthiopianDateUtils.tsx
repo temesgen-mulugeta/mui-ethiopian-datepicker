@@ -24,6 +24,7 @@ export namespace EthiopianDate {
     Month: number;
     Year: number;
   }
+
   export function createEthiopianDateFromParts(
     d: number,
     m: number,
@@ -287,5 +288,20 @@ export namespace EthiopianDate {
     let remainder = dayNo2 - dayNo1;
 
     return { years, remainder };
+  }
+  // -1 if the first date is earlier than the second date
+  // 0 if the two dates are the same
+  // 1 if the first date is later than the second date
+  export function compareDates(date1: EtDate, date2: EtDate): number {
+    if (date1.Year < date2.Year) return -1;
+    if (date1.Year > date2.Year) return 1;
+
+    if (date1.Month < date2.Month) return -1;
+    if (date1.Month > date2.Month) return 1;
+
+    if (date1.Day < date2.Day) return -1;
+    if (date1.Day > date2.Day) return 1;
+
+    return 0; // Dates are equal
   }
 }

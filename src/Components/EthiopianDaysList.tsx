@@ -17,7 +17,7 @@ const EthiopianDaysList: React.FC<EthiopianDaysListProps> = ({
   const gap = 0.5;
   const days = EthiopianDate.shortDays;
   const today = EthiopianDate.toEth(new Date());
-  const { onDateChange, value, disableFuture } =
+  const { onDateChange, value, disableFuture, disablePast, minDate, maxDate } =
     useContext(EtDatePickerContext);
 
   const [selectedDate, setSelectedDate] = useState<EthiopianDate.EtDate | null>(
@@ -26,6 +26,31 @@ const EthiopianDaysList: React.FC<EthiopianDaysListProps> = ({
 
   const getEtDate = (day: number): EthiopianDate.EtDate => {
     return { Day: day, Month: month, Year: year };
+  };
+
+  const isDisabled = (day: number): boolean => {
+    const date = EthiopianDate.createEthiopianDateFromParts(day, month, year);
+    if (disableFuture && EthiopianDate.compareDates(today, date) === 1) {
+      return true;
+    }
+    if (disablePast && EthiopianDate.compareDates(today, date) === -1) {
+      return true;
+    }
+    if (
+      minDate &&
+      EthiopianDate.compareDates(EthiopianDate.toEth(minDate as Date), date) ===
+        -1
+    ) {
+      return true;
+    }
+    if (
+      maxDate &&
+      EthiopianDate.compareDates(EthiopianDate.toEth(minDate as Date), date) ===
+        1
+    ) {
+      return true;
+    }
+    return false;
   };
 
   useEffect(() => {
@@ -81,7 +106,7 @@ const EthiopianDaysList: React.FC<EthiopianDaysListProps> = ({
           (_, index) => (
             <IconButton
               key={index}
-              disabled={disableFuture && index + 1 > today.Day}
+              disabled={isDisabled(index + 1)}
               onClick={() => {
                 setSelectedDate(getEtDate(index + 1));
                 const etDate = EthiopianDate.createEthiopianDateFromParts(

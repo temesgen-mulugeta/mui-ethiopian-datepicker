@@ -14,16 +14,16 @@ import format from "date-fns/format";
 import { EventOutlined } from "@mui/icons-material";
 import { EtDatePickerProvider } from "./EtDatePickerContext";
 import { DateType, EthiopianDate } from "./util/EthiopianDateUtils";
-import { DatePicker, DatePickerProps } from "@mui/x-date-pickers";
+import { DatePicker } from "@mui/x-date-pickers";
 
 type CustomFieldProps = Omit<
   React.ComponentProps<typeof TextField>,
   "onChange" | "value" | "InputProps"
 >;
 
-type DateFieldProps = Pick<
+export type EtDateFieldProps = Pick<
   React.ComponentProps<typeof DatePicker>,
-  "disablePast" | "disableFuture"
+  "disablePast" | "disableFuture" | "minDate" | "maxDate"
 >;
 
 type EtDatePickerProps = {
@@ -32,7 +32,7 @@ type EtDatePickerProps = {
   onChange?: (date: Date) => void;
   onChangeDateType?: (dateType: DateType) => void;
 } & CustomFieldProps &
-  DateFieldProps;
+  EtDateFieldProps;
 const EtDatePicker: React.FC<EtDatePickerProps> = ({
   onClick,
   onChangeDateType,
@@ -127,6 +127,9 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
         <EtDatePickerProvider
           onChange={handleDateChange}
           disableFuture={props.disableFuture}
+          disablePast={props.disablePast}
+          minDate={props.minDate}
+          maxDate={props.maxDate}
           value={date}
         >
           <EtGrDateCalendar />
