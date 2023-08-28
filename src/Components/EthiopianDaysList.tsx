@@ -38,15 +38,25 @@ const EthiopianDaysList: React.FC<EthiopianDaysListProps> = ({
     }
     if (
       minDate &&
-      EthiopianDate.compareDates(EthiopianDate.toEth(minDate as Date), date) ===
-        1
+      (minDate instanceof Date || Boolean(new Date(minDate as string))) &&
+      EthiopianDate.compareDates(
+        EthiopianDate.toEth(
+          minDate instanceof Date ? minDate : new Date(minDate as string)
+        ),
+        date
+      ) === 1
     ) {
       return true;
     }
     if (
       maxDate &&
-      EthiopianDate.compareDates(EthiopianDate.toEth(maxDate as Date), date) ===
-        -1
+      (maxDate instanceof Date || Boolean(new Date(maxDate as string))) &&
+      EthiopianDate.compareDates(
+        EthiopianDate.toEth(
+          maxDate instanceof Date ? maxDate : new Date(maxDate as string)
+        ),
+        date
+      ) === -1
     ) {
       return true;
     }

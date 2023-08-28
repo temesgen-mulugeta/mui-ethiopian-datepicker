@@ -5,10 +5,14 @@ import { DateType, EthiopianDate } from "./util/EthiopianDateUtils";
 
 type EtDateViewerProps = {
   date: Date;
+  initialDateType?: DateType;
 };
 
-const EtDateViewer: React.FC<EtDateViewerProps> = ({ date }) => {
-  const [dateType, setDateType] = useState<DateType>("EC");
+const EtDateViewer: React.FC<EtDateViewerProps> = ({
+  date,
+  initialDateType,
+}) => {
+  const [dateType, setDateType] = useState<DateType>(initialDateType ?? "EC");
 
   const handleDateTypeChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     const newDateType = dateType === "GC" ? "EC" : "GC";

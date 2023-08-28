@@ -159,7 +159,7 @@ var EthiopianDate;
     }
     EthiopianDate.toGreg = toGreg;
     function formatEtDate(dt) {
-        return `${dt.Day}/${getEtMonthName(dt.Month)}/${dt.Year}`;
+        return `${getEtMonthName(dt.Month)} ${dt.Day}/${dt.Year}`;
     }
     EthiopianDate.formatEtDate = formatEtDate;
     function getEtMonthName(m) {
@@ -193,6 +193,7 @@ var EthiopianDate;
     function toNamedMonthStringFromEtDate(et) {
         return `${getEtMonthName(et.Month)} ${et.Day}, ${et.Year}`;
     }
+    EthiopianDate.toNamedMonthStringFromEtDate = toNamedMonthStringFromEtDate;
     function isValid(date) {
         if (date.Year < 1000 || date.Year > 3000)
             return false;

@@ -188,7 +188,7 @@ export namespace EthiopianDate {
   }
 
   export function formatEtDate(dt: EtDate) {
-    return `${dt.Day}/${getEtMonthName(dt.Month)}/${dt.Year}`;
+    return `${getEtMonthName(dt.Month)} ${dt.Day}/${dt.Year}`;
   }
 
   export function getEtMonthName(m: number): string {
@@ -218,7 +218,7 @@ export namespace EthiopianDate {
         return "";
     }
   }
-  function toNamedMonthStringFromEtDate(et: EtDate): string {
+ export  function toNamedMonthStringFromEtDate(et: EtDate): string {
     return `${getEtMonthName(et.Month)} ${et.Day}, ${et.Year}`;
   }
 

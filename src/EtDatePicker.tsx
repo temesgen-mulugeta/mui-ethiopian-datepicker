@@ -24,8 +24,8 @@ type CustomFieldProps = Omit<
 
 export type EtDateFieldProps = Pick<
   React.ComponentProps<typeof DatePicker>,
-  "disablePast" | "disableFuture" | "minDate" | "maxDate"
->;
+  "disablePast" | "disableFuture"
+> & { minDate?: Date; maxDate?: Date };
 
 type EtDatePickerProps = {
   onClick?: () => void;

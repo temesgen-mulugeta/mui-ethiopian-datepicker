@@ -27,8 +27,8 @@ const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
 const date_fns_1 = require("date-fns");
 const EthiopianDateUtils_1 = require("./util/EthiopianDateUtils");
-const EtDateViewer = ({ date }) => {
-    const [dateType, setDateType] = (0, react_1.useState)("EC");
+const EtDateViewer = ({ date, initialDateType, }) => {
+    const [dateType, setDateType] = (0, react_1.useState)(initialDateType !== null && initialDateType !== void 0 ? initialDateType : "EC");
     const handleDateTypeChange = (event) => {
         const newDateType = dateType === "GC" ? "EC" : "GC";
         setDateType(newDateType);

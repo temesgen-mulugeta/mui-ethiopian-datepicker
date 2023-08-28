@@ -46,13 +46,13 @@ const EthiopianDaysList = ({ month, year, }) => {
             return true;
         }
         if (minDate &&
-            EthiopianDateUtils_1.EthiopianDate.compareDates(EthiopianDateUtils_1.EthiopianDate.toEth(minDate), date) ===
-                1) {
+            (minDate instanceof Date || Boolean(new Date(minDate))) &&
+            EthiopianDateUtils_1.EthiopianDate.compareDates(EthiopianDateUtils_1.EthiopianDate.toEth(minDate instanceof Date ? minDate : new Date(minDate)), date) === 1) {
             return true;
         }
         if (maxDate &&
-            EthiopianDateUtils_1.EthiopianDate.compareDates(EthiopianDateUtils_1.EthiopianDate.toEth(maxDate), date) ===
-                -1) {
+            (maxDate instanceof Date || Boolean(new Date(maxDate))) &&
+            EthiopianDateUtils_1.EthiopianDate.compareDates(EthiopianDateUtils_1.EthiopianDate.toEth(maxDate instanceof Date ? maxDate : new Date(maxDate)), date) === -1) {
             return true;
         }
         return false;

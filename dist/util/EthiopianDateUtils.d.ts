@@ -21,6 +21,7 @@ export declare namespace EthiopianDate {
     function formatEtDate(dt: EtDate): string;
     function getEtMonthName(m: number): string;
     function getDayOfWeekNameEt(d: number): string;
+    function toNamedMonthStringFromEtDate(et: EtDate): string;
     function isValid(date: EtDate): boolean;
     function addYears(etDate: EtDate, years: number): EtDate;
     function addDays(etDate: EtDate, days: number): EtDate;
