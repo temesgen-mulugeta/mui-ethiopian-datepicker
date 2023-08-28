@@ -42,7 +42,7 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
   ...props
 }) => {
   const [dateType, setDateType] = useState<DateType>("EC");
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date>();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -59,17 +59,18 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
 
   const handleDateChange = (newDate: Date) => {
     onChange?.(newDate);
-
-    if (
-      !(
-        newDate.getFullYear() !== date.getFullYear() &&
-        newDate.getDate() === date.getDate() &&
-        newDate.getMonth() === date.getMonth()
-      )
-    ) {
-      setAnchorEl(null);
+    if (newDate) {
+      if (
+        !(
+          newDate.getFullYear() !== date?.getFullYear() &&
+          newDate.getDate() === date?.getDate() &&
+          newDate.getMonth() === date?.getMonth()
+        )
+      ) {
+        setAnchorEl(null);
+      }
+      setDate(newDate);
     }
-    setDate(newDate);
   };
 
   const handleDateTypeChange = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -90,9 +91,11 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
       <TextField
         {...props}
         value={
-          dateType === "GC"
-            ? format(date, "dd/MMM/yyyy")
-            : EthiopianDate.formatEtDate(EthiopianDate.toEth(date))
+          date
+            ? dateType === "GC"
+              ? format(date, "dd/MMM/yyyy")
+              : EthiopianDate.formatEtDate(EthiopianDate.toEth(date))
+            : "-"
         }
         InputProps={{
           onClick: (event) => {

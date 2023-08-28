@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { EtDateFieldProps } from "./EtDatePicker";
 type EtDatePickerContextType = {
-    value: Date;
+    value?: Date;
     onDateChange: (date: Date) => void;
 } & EtDateFieldProps;
 declare const EtDatePickerContext: React.Context<EtDatePickerContextType>;

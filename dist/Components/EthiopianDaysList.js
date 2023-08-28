@@ -33,26 +33,26 @@ const EthiopianDaysList = ({ month, year, }) => {
     const days = EthiopianDateUtils_1.EthiopianDate.shortDays;
     const today = EthiopianDateUtils_1.EthiopianDate.toEth(new Date());
     const { onDateChange, value, disableFuture, disablePast, minDate, maxDate } = (0, react_1.useContext)(EtDatePickerContext_1.EtDatePickerContext);
-    const [selectedDate, setSelectedDate] = (0, react_1.useState)(EthiopianDateUtils_1.EthiopianDate.toEth(value));
+    const [selectedDate, setSelectedDate] = (0, react_1.useState)(value ? EthiopianDateUtils_1.EthiopianDate.toEth(value) : null);
     const getEtDate = (day) => {
         return { Day: day, Month: month, Year: year };
     };
     const isDisabled = (day) => {
         const date = EthiopianDateUtils_1.EthiopianDate.createEthiopianDateFromParts(day, month, year);
-        if (disableFuture && EthiopianDateUtils_1.EthiopianDate.compareDates(today, date) === 1) {
+        if (disableFuture && EthiopianDateUtils_1.EthiopianDate.compareDates(today, date) === -1) {
             return true;
         }
-        if (disablePast && EthiopianDateUtils_1.EthiopianDate.compareDates(today, date) === -1) {
+        if (disablePast && EthiopianDateUtils_1.EthiopianDate.compareDates(today, date) === 1) {
             return true;
         }
         if (minDate &&
             EthiopianDateUtils_1.EthiopianDate.compareDates(EthiopianDateUtils_1.EthiopianDate.toEth(minDate), date) ===
-                -1) {
+                1) {
             return true;
         }
         if (maxDate &&
-            EthiopianDateUtils_1.EthiopianDate.compareDates(EthiopianDateUtils_1.EthiopianDate.toEth(minDate), date) ===
-                1) {
+            EthiopianDateUtils_1.EthiopianDate.compareDates(EthiopianDateUtils_1.EthiopianDate.toEth(maxDate), date) ===
+                -1) {
             return true;
         }
         return false;

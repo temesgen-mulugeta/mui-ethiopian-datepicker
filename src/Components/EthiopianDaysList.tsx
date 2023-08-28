@@ -21,7 +21,7 @@ const EthiopianDaysList: React.FC<EthiopianDaysListProps> = ({
     useContext(EtDatePickerContext);
 
   const [selectedDate, setSelectedDate] = useState<EthiopianDate.EtDate | null>(
-    EthiopianDate.toEth(value)
+    value ? EthiopianDate.toEth(value) : null
   );
 
   const getEtDate = (day: number): EthiopianDate.EtDate => {
@@ -30,23 +30,23 @@ const EthiopianDaysList: React.FC<EthiopianDaysListProps> = ({
 
   const isDisabled = (day: number): boolean => {
     const date = EthiopianDate.createEthiopianDateFromParts(day, month, year);
-    if (disableFuture && EthiopianDate.compareDates(today, date) === 1) {
+    if (disableFuture && EthiopianDate.compareDates(today, date) === -1) {
       return true;
     }
-    if (disablePast && EthiopianDate.compareDates(today, date) === -1) {
+    if (disablePast && EthiopianDate.compareDates(today, date) === 1) {
       return true;
     }
     if (
       minDate &&
       EthiopianDate.compareDates(EthiopianDate.toEth(minDate as Date), date) ===
-        -1
+        1
     ) {
       return true;
     }
     if (
       maxDate &&
-      EthiopianDate.compareDates(EthiopianDate.toEth(minDate as Date), date) ===
-        1
+      EthiopianDate.compareDates(EthiopianDate.toEth(maxDate as Date), date) ===
+        -1
     ) {
       return true;
     }

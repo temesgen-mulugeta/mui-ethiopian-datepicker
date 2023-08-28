@@ -25,13 +25,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EtDatePickerContext = exports.EtDatePickerProvider = void 0;
 const react_1 = __importStar(require("react"));
+const x_date_pickers_1 = require("@mui/x-date-pickers");
+const AdapterDateFns_1 = require("@mui/x-date-pickers/AdapterDateFns");
 const EtDatePickerContext = (0, react_1.createContext)({
     value: new Date(),
     onDateChange: (date) => { },
 });
 exports.EtDatePickerContext = EtDatePickerContext;
 const EtDatePickerProvider = ({ children, onChange, value, disableFuture, disablePast, minDate, maxDate, }) => {
-    const [date, setDate] = (0, react_1.useState)(new Date());
+    const [date, setDate] = (0, react_1.useState)();
     const onDateChange = (date) => {
         setDate(date);
         onChange === null || onChange === void 0 ? void 0 : onChange(date);
@@ -41,6 +43,14 @@ const EtDatePickerProvider = ({ children, onChange, value, disableFuture, disabl
             setDate(value);
         }
     }, [value]);
-    return (react_1.default.createElement(EtDatePickerContext.Provider, { value: { value: date, onDateChange, disableFuture, disablePast, minDate, maxDate } }, children));
+    return (react_1.default.createElement(x_date_pickers_1.LocalizationProvider, { dateAdapter: AdapterDateFns_1.AdapterDateFns },
+        react_1.default.createElement(EtDatePickerContext.Provider, { value: {
+                value: date !== null && date !== void 0 ? date : undefined,
+                onDateChange,
+                disableFuture,
+                disablePast,
+                minDate,
+                maxDate,
+            } }, children)));
 };
 exports.EtDatePickerProvider = EtDatePickerProvider;

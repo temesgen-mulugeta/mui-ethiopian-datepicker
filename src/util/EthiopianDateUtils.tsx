@@ -161,7 +161,13 @@ export namespace EthiopianDate {
   }
 
   export function getDayNoGrigorian(date: Date): number {
+    if (!(date instanceof Date)) {
+      console.error("Invalid date object:", date);
+      return 0;
+    }
+    
     let years = date.getFullYear() - 1;
+
     let leap_years =
       Math.floor(years / 4) - Math.floor(years / 100) + Math.floor(years / 400);
     let non_leap_years = years - leap_years;
@@ -172,6 +178,7 @@ export namespace EthiopianDate {
       date.getDate();
     return days_in_previous_years + days_in_current_year;
   }
+
   export function toEth(dt: Date): EtDate {
     return createEthiopianDate(getDayNoGrigorian(dt) - 2431);
   }

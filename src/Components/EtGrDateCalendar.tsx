@@ -8,7 +8,8 @@ import React from "react";
 
 const EtGrDateCalendar = () => {
   const etDatePickerContext = useContext(EtDatePickerContext);
-  const { value, onDateChange, disableFuture } = etDatePickerContext;
+  const { value, onDateChange, disableFuture, disablePast, minDate, maxDate } =
+    etDatePickerContext;
 
   return (
     <Box sx={{ width: 600 }}>
@@ -20,13 +21,15 @@ const EtGrDateCalendar = () => {
         <Box width={295}>
           <DateCalendar
             monthsPerRow={3}
-            value={value}
+            value={value ?? undefined}
             onChange={(date) => {
-              if (date) onDateChange(date);
+              if (date && date instanceof Date) onDateChange(date);
             }}
-            
             sx={{ mr: 1 }}
             disableFuture={disableFuture}
+            disablePast={disablePast}
+            minDate={minDate}
+            maxDate={maxDate}
           />
         </Box>
       </Box>

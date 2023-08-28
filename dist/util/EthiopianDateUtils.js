@@ -137,6 +137,10 @@ var EthiopianDate;
         return sum;
     }
     function getDayNoGrigorian(date) {
+        if (!(date instanceof Date)) {
+            console.error("Invalid date object:", date);
+            return 0;
+        }
         let years = date.getFullYear() - 1;
         let leap_years = Math.floor(years / 4) - Math.floor(years / 100) + Math.floor(years / 400);
         let non_leap_years = years - leap_years;

@@ -25,7 +25,7 @@ const EtGrDateCalendar_1 = __importDefault(require("./Components/EtGrDateCalenda
 const EtDatePicker = (_a) => {
     var { onClick, onChangeDateType, value, onChange } = _a, props = __rest(_a, ["onClick", "onChangeDateType", "value", "onChange"]);
     const [dateType, setDateType] = (0, react_1.useState)("EC");
-    const [date, setDate] = (0, react_1.useState)(new Date());
+    const [date, setDate] = (0, react_1.useState)();
     const [anchorEl, setAnchorEl] = react_2.default.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -36,12 +36,14 @@ const EtDatePicker = (_a) => {
     };
     const handleDateChange = (newDate) => {
         onChange === null || onChange === void 0 ? void 0 : onChange(newDate);
-        if (!(newDate.getFullYear() !== date.getFullYear() &&
-            newDate.getDate() === date.getDate() &&
-            newDate.getMonth() === date.getMonth())) {
-            setAnchorEl(null);
+        if (newDate) {
+            if (!(newDate.getFullYear() !== (date === null || date === void 0 ? void 0 : date.getFullYear()) &&
+                newDate.getDate() === (date === null || date === void 0 ? void 0 : date.getDate()) &&
+                newDate.getMonth() === (date === null || date === void 0 ? void 0 : date.getMonth()))) {
+                setAnchorEl(null);
+            }
+            setDate(newDate);
         }
-        setDate(newDate);
     };
     const handleDateTypeChange = (event) => {
         const newDateType = dateType === "GC" ? "EC" : "GC";
@@ -55,9 +57,11 @@ const EtDatePicker = (_a) => {
         }
     }, [value]);
     return (react_2.default.createElement(react_2.default.Fragment, null,
-        react_2.default.createElement(material_1.TextField, Object.assign({}, props, { value: dateType === "GC"
-                ? (0, format_1.default)(date, "dd/MMM/yyyy")
-                : EthiopianDateUtils_1.EthiopianDate.formatEtDate(EthiopianDateUtils_1.EthiopianDate.toEth(date)), InputProps: {
+        react_2.default.createElement(material_1.TextField, Object.assign({}, props, { value: date
+                ? dateType === "GC"
+                    ? (0, format_1.default)(date, "dd/MMM/yyyy")
+                    : EthiopianDateUtils_1.EthiopianDate.formatEtDate(EthiopianDateUtils_1.EthiopianDate.toEth(date))
+                : "-", InputProps: {
                 onClick: (event) => {
                     handleClick(event);
                 },
