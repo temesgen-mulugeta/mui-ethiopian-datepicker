@@ -48,9 +48,11 @@ const EthiopianDateCalendar = () => {
     };
     const decrementMonth = () => {
         if (ethDate.Month === 1) {
-            setEthDate(Object.assign(Object.assign({}, ethDate), { Year: ethDate.Year - 1 }));
+            setEthDate(Object.assign(Object.assign({}, ethDate), { Year: ethDate.Year - 1, Month: 13 }));
         }
-        setEthDate((prev) => (Object.assign(Object.assign({}, prev), { Month: prev.Month - 1 })));
+        else {
+            setEthDate((prev) => (Object.assign(Object.assign({}, prev), { Month: prev.Month - 1 })));
+        }
     };
     (0, react_1.useEffect)(() => {
         if (value) {
@@ -61,8 +63,7 @@ const EthiopianDateCalendar = () => {
         react_1.default.createElement(material_1.Stack, { direction: "row", justifyContent: "space-between", m: 2 },
             react_1.default.createElement(material_1.Box, { sx: { display: "flex", alignItems: "center" } },
                 react_1.default.createElement(material_1.Typography, null, `${EthiopianDateUtils_1.EthiopianDate.getEtMonthName(ethDate.Month)} ${ethDate.Year}`),
-                react_1.default.createElement(material_1.IconButton, { size: "small", onClick: () => setShowYearList(!showYearList) },
-                    react_1.default.createElement(icons_material_1.ArrowDropDown, null))),
+                react_1.default.createElement(material_1.IconButton, { size: "small", onClick: () => setShowYearList(!showYearList) }, showYearList ? react_1.default.createElement(icons_material_1.ArrowDropUp, null) : react_1.default.createElement(icons_material_1.ArrowDropDown, null))),
             react_1.default.createElement(material_1.Box, { sx: { display: "flex" } },
                 react_1.default.createElement(material_1.IconButton, { size: "small", onClick: decrementMonth },
                     react_1.default.createElement(icons_material_1.ChevronLeft, null)),

@@ -162,6 +162,11 @@ var EthiopianDate;
         return `${getEtMonthName(dt.Month)} ${dt.Day}/${dt.Year}`;
     }
     EthiopianDate.formatEtDate = formatEtDate;
+    function formatGrDateToEtDate(date) {
+        const dt = toEth(date);
+        return `${getEtMonthName(dt.Month)} ${dt.Day}/${dt.Year}`;
+    }
+    EthiopianDate.formatGrDateToEtDate = formatGrDateToEtDate;
     function getEtMonthName(m) {
         if (m > 0 && m <= 13) {
             return EthiopianDate.ethMonths[m - 1];

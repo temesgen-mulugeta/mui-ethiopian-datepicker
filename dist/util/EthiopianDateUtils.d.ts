@@ -19,6 +19,7 @@ export declare namespace EthiopianDate {
     function toEth(dt: Date): EtDate;
     function toGreg(et: EtDate): Date;
     function formatEtDate(dt: EtDate): string;
+    function formatGrDateToEtDate(date: Date): string;
     function getEtMonthName(m: number): string;
     function getDayOfWeekNameEt(d: number): string;
     function toNamedMonthStringFromEtDate(et: EtDate): string;

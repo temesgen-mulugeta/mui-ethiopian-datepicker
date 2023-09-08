@@ -18,7 +18,7 @@ const EtGrDateCalendar = () => {
                 react_2.default.createElement(EthiopianDateCalendar_1.default, null)),
             react_2.default.createElement(material_1.Divider, { orientation: "vertical", flexItem: true }),
             react_2.default.createElement(material_1.Box, { width: 295 },
-                react_2.default.createElement(x_date_pickers_1.DateCalendar, { monthsPerRow: 3, value: value !== null && value !== void 0 ? value : undefined, onChange: (date) => {
+                react_2.default.createElement(x_date_pickers_1.DateCalendar, { monthsPerRow: 3, value: value !== null && value !== void 0 ? value : null, onChange: (date) => {
                         if (date && date instanceof Date)
                             onDateChange(date);
                     }, sx: { mr: 1 }, disableFuture: disableFuture, disablePast: disablePast, minDate: minDate, maxDate: maxDate })))));
