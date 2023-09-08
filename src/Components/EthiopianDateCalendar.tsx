@@ -1,4 +1,9 @@
-import { ArrowDropDown, ChevronLeft, ChevronRight } from "@mui/icons-material";
+import {
+  ArrowDropDown,
+  ArrowDropUp,
+  ChevronLeft,
+  ChevronRight,
+} from "@mui/icons-material";
 import { Box, Stack, Typography, IconButton } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 
@@ -26,9 +31,10 @@ const EthiopianDateCalendar = () => {
 
   const decrementMonth = () => {
     if (ethDate.Month === 1) {
-      setEthDate({ ...ethDate, Year: ethDate.Year - 1 });
+      setEthDate({ ...ethDate, Year: ethDate.Year - 1, Month: 13 });
+    } else {
+      setEthDate((prev) => ({ ...prev, Month: prev.Month - 1 }));
     }
-    setEthDate((prev) => ({ ...prev, Month: prev.Month - 1 }));
   };
 
   useEffect(() => {
@@ -48,7 +54,7 @@ const EthiopianDateCalendar = () => {
             size="small"
             onClick={() => setShowYearList(!showYearList)}
           >
-            <ArrowDropDown />
+            {showYearList ? <ArrowDropUp /> : <ArrowDropDown />}
           </IconButton>
         </Box>
         <Box sx={{ display: "flex" }}>

@@ -21,7 +21,7 @@ const EtGrDateCalendar = () => {
         <Box width={295}>
           <DateCalendar
             monthsPerRow={3}
-            value={value ?? undefined}
+            value={value ?? null}
             onChange={(date) => {
               if (date && date instanceof Date) onDateChange(date);
             }}

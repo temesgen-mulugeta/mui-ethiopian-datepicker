@@ -29,7 +29,7 @@ export type EtDateFieldProps = Pick<
 
 type EtDatePickerProps = {
   onClick?: () => void;
-  value?: Date;
+  value?: Date | null;
   onChange?: (date: Date) => void;
   onChangeDateType?: (dateType: DateType) => void;
 } & CustomFieldProps &

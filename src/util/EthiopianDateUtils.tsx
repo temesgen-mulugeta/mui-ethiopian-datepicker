@@ -165,7 +165,7 @@ export namespace EthiopianDate {
       console.error("Invalid date object:", date);
       return 0;
     }
-    
+
     let years = date.getFullYear() - 1;
 
     let leap_years =
@@ -188,6 +188,11 @@ export namespace EthiopianDate {
   }
 
   export function formatEtDate(dt: EtDate) {
+    return `${getEtMonthName(dt.Month)} ${dt.Day}/${dt.Year}`;
+  }
+  
+  export function formatGrDateToEtDate(date: Date) {
+    const dt = toEth(date);
     return `${getEtMonthName(dt.Month)} ${dt.Day}/${dt.Year}`;
   }
 
@@ -218,7 +223,7 @@ export namespace EthiopianDate {
         return "";
     }
   }
- export  function toNamedMonthStringFromEtDate(et: EtDate): string {
+  export function toNamedMonthStringFromEtDate(et: EtDate): string {
     return `${getEtMonthName(et.Month)} ${et.Day}, ${et.Year}`;
   }
 
