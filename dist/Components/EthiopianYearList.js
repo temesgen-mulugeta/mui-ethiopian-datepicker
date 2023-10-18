@@ -157,7 +157,7 @@ const EthiopianYearList = ({ startYear, yearRange, onYearClick, }) => {
     };
     return (react_1.default.createElement(material_1.Box, { sx: {
             overflowY: "scroll",
-            maxHeight: "80vh",
+            maxHeight: "270px",
             scrollbarWidth: "1px",
             "&::-webkit-scrollbar": {
                 display: "none",

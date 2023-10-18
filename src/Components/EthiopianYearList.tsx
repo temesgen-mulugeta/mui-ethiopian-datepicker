@@ -100,7 +100,6 @@
 
 // export default EthiopianYearList;
 
-
 import { Grid, Chip, Box } from "@mui/material";
 import React, { useContext, useEffect, useRef } from "react";
 import { EthiopianDate } from "../util/EthiopianDateUtils";
@@ -160,7 +159,7 @@ const EthiopianYearList: React.FC<EthiopianYearListProps> = ({
     <Box
       sx={{
         overflowY: "scroll",
-        maxHeight: "80vh",
+        maxHeight: "270px",
         scrollbarWidth: "1px",
         "&::-webkit-scrollbar": {
           display: "none",
