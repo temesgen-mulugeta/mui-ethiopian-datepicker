@@ -1,6 +1,6 @@
 {
   "name": "mui-ethiopian-datepicker",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "An Ethiopian date picker component designed for React applications. Built on top of Material-UI.",
   "main": "dist/index.js",
   "scripts": {

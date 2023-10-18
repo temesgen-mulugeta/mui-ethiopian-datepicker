@@ -98,9 +98,11 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
             : "-"
         }
         InputProps={{
-          onClick: (event) => {
-            handleClick(event);
-          },
+          onClick: props.disabled
+            ? undefined
+            : (event) => {
+                handleClick(event);
+              },
           startAdornment: (
             <InputAdornment position="start">
               <ButtonBase onClick={handleDateTypeChange}>
@@ -112,7 +114,7 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
           ),
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={handleClick}>
+              <IconButton onClick={handleClick} disabled={props.disabled}>
                 <EventOutlined />
               </IconButton>
             </InputAdornment>

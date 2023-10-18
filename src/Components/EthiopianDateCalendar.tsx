@@ -46,14 +46,20 @@ const EthiopianDateCalendar = () => {
   return (
     <Box mx={2}>
       <Stack direction="row" justifyContent="space-between" m={2}>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            "&:hover": {
+              cursor: "pointer",
+            },
+          }}
+          onClick={() => setShowYearList(!showYearList)}
+        >
           <Typography>{`${EthiopianDate.getEtMonthName(ethDate.Month)} ${
             ethDate.Year
           }`}</Typography>
-          <IconButton
-            size="small"
-            onClick={() => setShowYearList(!showYearList)}
-          >
+          <IconButton size="small">
             {showYearList ? <ArrowDropUp /> : <ArrowDropDown />}
           </IconButton>
         </Box>

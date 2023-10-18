@@ -62,14 +62,16 @@ const EtDatePicker = (_a) => {
                     ? (0, format_1.default)(date, "dd/MMM/yyyy")
                     : EthiopianDateUtils_1.EthiopianDate.formatEtDate(EthiopianDateUtils_1.EthiopianDate.toEth(date))
                 : "-", InputProps: {
-                onClick: (event) => {
-                    handleClick(event);
-                },
+                onClick: props.disabled
+                    ? undefined
+                    : (event) => {
+                        handleClick(event);
+                    },
                 startAdornment: (react_2.default.createElement(material_1.InputAdornment, { position: "start" },
                     react_2.default.createElement(material_1.ButtonBase, { onClick: handleDateTypeChange },
                         react_2.default.createElement(material_1.Typography, { fontWeight: 700, color: "primary" }, dateType)))),
                 endAdornment: (react_2.default.createElement(material_1.InputAdornment, { position: "end" },
-                    react_2.default.createElement(material_1.IconButton, { onClick: handleClick },
+                    react_2.default.createElement(material_1.IconButton, { onClick: handleClick, disabled: props.disabled },
                         react_2.default.createElement(icons_material_1.EventOutlined, null)))),
             } })),
         react_2.default.createElement(material_1.Menu, { id: "basic-menu", anchorEl: anchorEl, open: open, onClose: handleClose, MenuListProps: {
