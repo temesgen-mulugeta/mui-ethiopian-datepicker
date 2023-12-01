@@ -5,11 +5,14 @@ type LocalizationContextProps = {
     setLocalType: React.Dispatch<React.SetStateAction<EtLocal>>;
     getLocalMonthName?: (month: number) => string;
 };
-export declare const useEtLocalization: () => LocalizationContextProps;
 type LocalizationProviderProps = {
     children: ReactNode;
     locale?: EtLocal;
     getLocalMonthName?: (month: number) => string;
 };
 export declare const EtLocalizationProvider: React.FC<LocalizationProviderProps>;
+export declare const useEtLocalization: () => LocalizationContextProps | {
+    localType: "AMH";
+    getLocalMonthName: (m: number) => string;
+};
 export {};

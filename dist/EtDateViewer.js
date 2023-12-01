@@ -38,7 +38,7 @@ const EtDateViewer = ({ date, initialDateType, }) => {
     };
     return (react_1.default.createElement(material_1.Stack, { direction: "row", spacing: 0.7 },
         react_1.default.createElement(material_1.ButtonBase, { onClick: handleDateTypeChange },
-            react_1.default.createElement(material_1.Typography, { fontWeight: 700, color: "primary" }, dateType)),
+            react_1.default.createElement(material_1.Typography, { fontWeight: 700, color: "primary" }, dateType === "CUSTOM" ? "CU" : dateType)),
         react_1.default.createElement(material_1.Typography, null, dateType === "GC"
             ? (0, date_fns_1.format)(date, "dd/MMM/yyyy")
             : EthiopianDateUtils_1.EthiopianDate.formatEtDate(EthiopianDateUtils_1.EthiopianDate.toEth(date), localType, getLocalMonthName))));

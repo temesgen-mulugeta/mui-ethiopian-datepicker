@@ -80,9 +80,6 @@ const EthiopianDateCalendar = () => {
         react_1.default.createElement(material_1.Box, null, showYearList ? (react_1.default.createElement(EthiopianYearList_1.default, { onYearClick: (selectedYear) => {
                 setEthDate(Object.assign(Object.assign({}, ethDate), { Year: selectedYear }));
                 setShowYearList(false);
-                const etDate = EthiopianDateUtils_1.EthiopianDate.createEthiopianDateFromParts(ethDate.Day, ethDate.Month, selectedYear);
-                const grDate = EthiopianDateUtils_1.EthiopianDate.toGreg(etDate);
-                onDateChange(grDate);
             }, startYear: ethDate.Year })) : (react_1.default.createElement(EthiopianDaysList_1.default, { month: ethDate.Month, year: ethDate.Year })))));
 };
 exports.default = EthiopianDateCalendar;

@@ -70,7 +70,7 @@ const EtDatePicker = (_a) => {
                     },
                 startAdornment: (react_2.default.createElement(material_1.InputAdornment, { position: "start" },
                     react_2.default.createElement(material_1.ButtonBase, { onClick: handleDateTypeChange },
-                        react_2.default.createElement(material_1.Typography, { fontWeight: 700, color: "primary" }, dateType)))),
+                        react_2.default.createElement(material_1.Typography, { fontWeight: 700, color: "primary" }, dateType === "CUSTOM" ? "CU" : dateType)))),
                 endAdornment: (react_2.default.createElement(material_1.InputAdornment, { position: "end" },
                     react_2.default.createElement(material_1.IconButton, { onClick: handleClick, disabled: props.disabled },
                         react_2.default.createElement(icons_material_1.EventOutlined, null)))),
