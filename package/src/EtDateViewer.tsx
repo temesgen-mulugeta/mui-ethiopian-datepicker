@@ -28,12 +28,12 @@ const EtDateViewer: React.FC<EtDateViewerProps> = ({
       {!disableSwitcher && (
         <ButtonBase onClick={handleDateTypeChange}>
           <Typography fontWeight={700} color="primary">
-            {localType === "CUSTOM" ? "CU" : localType}
+            {dateType === "CUSTOM" ? "CU" : dateType}
           </Typography>
         </ButtonBase>
       )}
       <Typography>
-        {localType === "EN"
+        {dateType === "EN"
           ? format(date, "dd/MMM/yyyy")
           : EthiopianDate.formatEtDate(
               EthiopianDate.toEth(date),
