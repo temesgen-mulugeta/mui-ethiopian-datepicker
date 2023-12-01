@@ -34,7 +34,7 @@ const EtDateViewer: React.FC<EtDateViewerProps> = ({
       )}
       <Typography>
         {localType === "EN"
-          ? format(date, "dd/MMM/yyyy")
+          ? format(date, "MMM dd/yyyy")
           : EthiopianDate.formatEtDate(
               EthiopianDate.toEth(date),
               localType ?? "AMH",
