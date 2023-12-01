@@ -14,12 +14,12 @@ import { EthiopianDate } from "../util/EthiopianDateUtils";
 import { useEtLocalization } from "../EtLocalizationProvider";
 
 const EthiopianDateCalendar = () => {
-  const { onDateChange, value } = useContext(EtDatePickerContext);
+  const { value } = useContext(EtDatePickerContext);
   const today = EthiopianDate.toEth(new Date());
   const [ethDate, setEthDate] = useState<EthiopianDate.EtDate>(today);
   const [showYearList, setShowYearList] = useState(false);
 
-  const { localType } = useEtLocalization();
+  const { localType, getLocalMonthName } = useEtLocalization();
 
   const incrementMonth = () => {
     if (ethDate.Month === 13) {
@@ -61,7 +61,8 @@ const EthiopianDateCalendar = () => {
         >
           <Typography>{`${EthiopianDate.getEtMonthName(
             ethDate.Month,
-            localType
+            localType,
+            getLocalMonthName
           )} ${ethDate.Year}`}</Typography>
           <IconButton size="small">
             {showYearList ? <ArrowDropUp /> : <ArrowDropDown />}

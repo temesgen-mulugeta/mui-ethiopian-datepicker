@@ -20,9 +20,9 @@ export declare namespace EthiopianDate {
     function getDayNoGrigorian(date: Date): number;
     function toEth(dt: Date): EtDate;
     function toGreg(et: EtDate): Date;
-    function formatEtDate(dt: EtDate, locale: EtLocal, getLocalMonth?: (month: number) => string): string;
+    function formatEtDate(dt: EtDate, locale: DateType, getLocalMonth?: (month: number) => string): string;
     function formatGrDateToEtDate(date: Date): string;
-    function getEtMonthName(m: number, locale?: EtLocal, getLocalMonth?: (month: number) => string): string;
+    function getEtMonthName(m: number, locale?: DateType, getLocalMonth?: (month: number) => string): string;
     function getDayOfWeekNameEt(d: number): string;
     function toNamedMonthStringFromEtDate(et: EtDate): string;
     function isValid(date: EtDate): boolean;

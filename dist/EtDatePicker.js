@@ -49,7 +49,7 @@ const EtDatePicker = (_a) => {
     };
     const handleDateTypeChange = (event) => {
         const newDateType = dateType === "GC" ? localType : "GC";
-        setDateType(newDateType);
+        setDateType(newDateType !== null && newDateType !== void 0 ? newDateType : "GC");
         event.stopPropagation();
     };
     (0, react_1.useEffect)(() => {

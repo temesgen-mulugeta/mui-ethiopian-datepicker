@@ -206,7 +206,7 @@ export namespace EthiopianDate {
 
   export function formatEtDate(
     dt: EtDate,
-    locale: EtLocal,
+    locale: DateType,
     getLocalMonth?: (month: number) => string
   ) {
     let month = "";
@@ -233,7 +233,7 @@ export namespace EthiopianDate {
 
   export function getEtMonthName(
     m: number,
-    locale: EtLocal = "AMH",
+    locale: DateType = "AMH",
     getLocalMonth?: (month: number) => string
   ): string {
     if (m > 0 && m <= 13) {

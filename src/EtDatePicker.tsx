@@ -75,7 +75,7 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
 
   const handleDateTypeChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     const newDateType = dateType === "GC" ? localType : "GC";
-    setDateType(newDateType);
+    setDateType(newDateType ?? "GC");
     event.stopPropagation();
   };
 
