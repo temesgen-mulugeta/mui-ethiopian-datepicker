@@ -1,8 +1,10 @@
-export type DateType = "EC" | "GC";
+export type DateType = EtLocal | "GC";
+export type EtLocal = "AMH" | "AO" | "CUSTOM";
 export declare namespace EthiopianDate {
     const shortDays: string[];
     const longDays: string[];
     const ethMonths: string[];
+    const AoMonths: string[];
     interface EtDate {
         Day: number;
         Month: number;
@@ -18,9 +20,9 @@ export declare namespace EthiopianDate {
     function getDayNoGrigorian(date: Date): number;
     function toEth(dt: Date): EtDate;
     function toGreg(et: EtDate): Date;
-    function formatEtDate(dt: EtDate): string;
+    function formatEtDate(dt: EtDate, locale: EtLocal, getLocalMonth?: (month: number) => string): string;
     function formatGrDateToEtDate(date: Date): string;
-    function getEtMonthName(m: number): string;
+    function getEtMonthName(m: number, locale?: EtLocal, getLocalMonth?: (month: number) => string): string;
     function getDayOfWeekNameEt(d: number): string;
     function toNamedMonthStringFromEtDate(et: EtDate): string;
     function isValid(date: EtDate): boolean;

@@ -1,11 +1,12 @@
 
 # MUI Ethiopian DatePicker
 
-Current Version: 0.1.4
+Current Version: 0.1.7
 
 `mui-ethiopian-datepicker` is a React component for selecting Ethiopian dates. It's built on top of Material-UI and provides a culturally tailored date picker experience integrated seamlessly with other MUI components.
 
-![Screenshot of DatePicker](screenshot-url-here)
+![Screenshot of DatePicker](https://drive.google.com/uc?export=view&id=1F59_kA2MBtQuczFLYWo1-e527uPvn0yt)
+
 
 ## Installation
 
@@ -63,12 +64,65 @@ function MyComponent() {
 }
 ```
 
+
+## Localization Support in `Version 0.1.7`
+
+Starting from version 0.1.7, `mui-ethiopian-datepicker`  introduces localization support for different Ethiopian localizations. This feature allows a more tailored experience for users.
+
+
+#### 1. First, you need to import the EtLocalizationProvider from the mui-ethiopian-datepicker package.
+
+```tsx
+
+import { EtLocalizationProvider } from 'mui-ethiopian-datepicker';
+
+```
+
+
+#### 2. Wrap Your Application or Component: 
+Use the EtLocalizationProvider to wrap your entire application or just the section where the date picker is used. This will ensure that all date pickers within this context are localized.
+
+```tsx
+
+function MyApp({ children }) {
+  return (
+    <EtLocalizationProvider localType="AMH">
+      {children}
+    </EtLocalizationProvider>
+  );
+}
+```
+#### 3. Configure the Localization Provider:
+The EtLocalizationProvider accepts the following props to configure the localization:
+
+`localType:` This can be set to "AMH" (Amharic), "AO" (Afan Oromo), or "CUSTOM". It defines the type of localization you want to apply. "AMH" and "AO" are predefined localizations, while "CUSTOM" allows for more personalized configurations.
+
+`getLocalMonthName:` This optional function is used only when localType is set to "CUSTOM". It allows you to provide a custom function to return the name of the month based on the month number.
+
+```tsx
+function MyApp() {
+  const getCustomMonthName = (month: number) => {
+    // Define custom month names
+    const customMonthNames = ["Custom Month 1", "Custom Month 2", ...];
+    return customMonthNames[month - 1];
+  };
+
+  return (
+    <EtLocalizationProvider localType="CUSTOM" getLocalMonthName={getCustomMonthName}>
+      {children}
+    </EtLocalizationProvider>
+  );
+}
+
+
+```
+
+
 ### Using `EtDateViewer`
 
 ```tsx
 import { EtDateViewer } from "mui-ethiopian-datepicker";
 
-// ... Sample usage of EtDateViewer
 ```
 
 ## EthiopianDateUtil

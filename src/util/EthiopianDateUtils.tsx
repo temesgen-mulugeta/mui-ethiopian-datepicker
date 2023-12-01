@@ -1,4 +1,6 @@
-export type DateType = "EC" | "GC";
+export type DateType = EtLocal | "GC";
+
+export type EtLocal = "AMH" | "AO" | "CUSTOM";
 
 export namespace EthiopianDate {
   export const shortDays = ["ሰ", "ማ", "እ", "ሐ", "አ", "ቅ", "እ"];
@@ -17,6 +19,21 @@ export namespace EthiopianDate {
     "ሐምሌ",
     "ነሀሴ",
     "ጳጉሜ",
+  ];
+  export const AoMonths = [
+    "Fulbaana",
+    "Onkololeessa",
+    "Sadaasa",
+    "Muddee",
+    "Amajji",
+    "Guraadhanala",
+    "Bitootesa",
+    "Ebla",
+    "Caamsaa",
+    "Waxabajji",
+    "Adoolessa",
+    "Hagayya",
+    "Qaammee",
   ];
 
   export interface EtDate {
@@ -187,18 +204,49 @@ export namespace EthiopianDate {
     return grigorianDateFromDayNo(getDayNoEthiopian(et) + 2431);
   }
 
-  export function formatEtDate(dt: EtDate) {
-    return `${getEtMonthName(dt.Month)} ${dt.Day}/${dt.Year}`;
+  export function formatEtDate(
+    dt: EtDate,
+    locale: EtLocal,
+    getLocalMonth?: (month: number) => string
+  ) {
+    let month = "";
+    switch (locale) {
+      case "AMH":
+        month = getEtMonthName(dt.Month);
+        break;
+      case "AO":
+        month = getEtMonthName(dt.Month, "AO");
+        break;
+      case "CUSTOM":
+        month = getLocalMonth?.(dt.Month) ?? "";
+        break;
+      default:
+        break;
+    }
+    return `${month} ${dt.Day}/${dt.Year}`;
   }
-  
+
   export function formatGrDateToEtDate(date: Date) {
     const dt = toEth(date);
     return `${getEtMonthName(dt.Month)} ${dt.Day}/${dt.Year}`;
   }
 
-  export function getEtMonthName(m: number): string {
+  export function getEtMonthName(
+    m: number,
+    locale: EtLocal = "AMH",
+    getLocalMonth?: (month: number) => string
+  ): string {
     if (m > 0 && m <= 13) {
-      return ethMonths[m - 1];
+      switch (locale) {
+        case "AMH":
+          return ethMonths[m - 1];
+        case "AO":
+          return AoMonths[m - 1];
+        case "CUSTOM":
+          return getLocalMonth?.(m) ?? "";
+        default:
+          break;
+      }
     }
     return "";
   }

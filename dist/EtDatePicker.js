@@ -22,9 +22,11 @@ const icons_material_1 = require("@mui/icons-material");
 const EtDatePickerContext_1 = require("./EtDatePickerContext");
 const EthiopianDateUtils_1 = require("./util/EthiopianDateUtils");
 const EtGrDateCalendar_1 = __importDefault(require("./Components/EtGrDateCalendar"));
+const EtLocalizationProvider_1 = require("./EtLocalizationProvider");
 const EtDatePicker = (_a) => {
-    var { onClick, onChangeDateType, value, onChange } = _a, props = __rest(_a, ["onClick", "onChangeDateType", "value", "onChange"]);
-    const [dateType, setDateType] = (0, react_1.useState)("EC");
+    var { onClick, value, onChange } = _a, props = __rest(_a, ["onClick", "value", "onChange"]);
+    const { localType, getLocalMonthName } = (0, EtLocalizationProvider_1.useEtLocalization)();
+    const [dateType, setDateType] = (0, react_1.useState)(localType);
     const [date, setDate] = (0, react_1.useState)();
     const [anchorEl, setAnchorEl] = react_2.default.useState(null);
     const open = Boolean(anchorEl);
@@ -46,9 +48,8 @@ const EtDatePicker = (_a) => {
         }
     };
     const handleDateTypeChange = (event) => {
-        const newDateType = dateType === "GC" ? "EC" : "GC";
+        const newDateType = dateType === "GC" ? localType : "GC";
         setDateType(newDateType);
-        onChangeDateType === null || onChangeDateType === void 0 ? void 0 : onChangeDateType(newDateType);
         event.stopPropagation();
     };
     (0, react_1.useEffect)(() => {
@@ -60,7 +61,7 @@ const EtDatePicker = (_a) => {
         react_2.default.createElement(material_1.TextField, Object.assign({}, props, { value: date
                 ? dateType === "GC"
                     ? (0, format_1.default)(date, "dd/MMM/yyyy")
-                    : EthiopianDateUtils_1.EthiopianDate.formatEtDate(EthiopianDateUtils_1.EthiopianDate.toEth(date))
+                    : EthiopianDateUtils_1.EthiopianDate.formatEtDate(EthiopianDateUtils_1.EthiopianDate.toEth(date), localType, getLocalMonthName)
                 : "-", InputProps: {
                 onClick: props.disabled
                     ? undefined

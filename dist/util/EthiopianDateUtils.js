@@ -20,6 +20,21 @@ var EthiopianDate;
         "ነሀሴ",
         "ጳጉሜ",
     ];
+    EthiopianDate.AoMonths = [
+        "Fulbaana",
+        "Onkololeessa",
+        "Sadaasa",
+        "Muddee",
+        "Amajji",
+        "Guraadhanala",
+        "Bitootesa",
+        "Ebla",
+        "Caamsaa",
+        "Waxabajji",
+        "Adoolessa",
+        "Hagayya",
+        "Qaammee",
+    ];
     function createEthiopianDateFromParts(d, m, y) {
         return {
             Day: d,
@@ -158,8 +173,23 @@ var EthiopianDate;
         return grigorianDateFromDayNo(getDayNoEthiopian(et) + 2431);
     }
     EthiopianDate.toGreg = toGreg;
-    function formatEtDate(dt) {
-        return `${getEtMonthName(dt.Month)} ${dt.Day}/${dt.Year}`;
+    function formatEtDate(dt, locale, getLocalMonth) {
+        var _a;
+        let month = "";
+        switch (locale) {
+            case "AMH":
+                month = getEtMonthName(dt.Month);
+                break;
+            case "AO":
+                month = getEtMonthName(dt.Month, "AO");
+                break;
+            case "CUSTOM":
+                month = (_a = getLocalMonth === null || getLocalMonth === void 0 ? void 0 : getLocalMonth(dt.Month)) !== null && _a !== void 0 ? _a : "";
+                break;
+            default:
+                break;
+        }
+        return `${month} ${dt.Day}/${dt.Year}`;
     }
     EthiopianDate.formatEtDate = formatEtDate;
     function formatGrDateToEtDate(date) {
@@ -167,9 +197,19 @@ var EthiopianDate;
         return `${getEtMonthName(dt.Month)} ${dt.Day}/${dt.Year}`;
     }
     EthiopianDate.formatGrDateToEtDate = formatGrDateToEtDate;
-    function getEtMonthName(m) {
+    function getEtMonthName(m, locale = "AMH", getLocalMonth) {
+        var _a;
         if (m > 0 && m <= 13) {
-            return EthiopianDate.ethMonths[m - 1];
+            switch (locale) {
+                case "AMH":
+                    return EthiopianDate.ethMonths[m - 1];
+                case "AO":
+                    return EthiopianDate.AoMonths[m - 1];
+                case "CUSTOM":
+                    return (_a = getLocalMonth === null || getLocalMonth === void 0 ? void 0 : getLocalMonth(m)) !== null && _a !== void 0 ? _a : "";
+                default:
+                    break;
+            }
         }
         return "";
     }

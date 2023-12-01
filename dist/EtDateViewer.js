@@ -27,10 +27,12 @@ const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
 const date_fns_1 = require("date-fns");
 const EthiopianDateUtils_1 = require("./util/EthiopianDateUtils");
+const EtLocalizationProvider_1 = require("./EtLocalizationProvider");
 const EtDateViewer = ({ date, initialDateType, }) => {
-    const [dateType, setDateType] = (0, react_1.useState)(initialDateType !== null && initialDateType !== void 0 ? initialDateType : "EC");
+    const [dateType, setDateType] = (0, react_1.useState)(initialDateType !== null && initialDateType !== void 0 ? initialDateType : "AMH");
+    const { localType, getLocalMonthName } = (0, EtLocalizationProvider_1.useEtLocalization)();
     const handleDateTypeChange = (event) => {
-        const newDateType = dateType === "GC" ? "EC" : "GC";
+        const newDateType = dateType === "GC" ? localType : "GC";
         setDateType(newDateType);
         event.stopPropagation();
     };
@@ -39,6 +41,6 @@ const EtDateViewer = ({ date, initialDateType, }) => {
             react_1.default.createElement(material_1.Typography, { fontWeight: 700, color: "primary" }, dateType)),
         react_1.default.createElement(material_1.Typography, null, dateType === "GC"
             ? (0, date_fns_1.format)(date, "dd/MMM/yyyy")
-            : EthiopianDateUtils_1.EthiopianDate.formatEtDate(EthiopianDateUtils_1.EthiopianDate.toEth(date)))));
+            : EthiopianDateUtils_1.EthiopianDate.formatEtDate(EthiopianDateUtils_1.EthiopianDate.toEth(date), localType, getLocalMonthName))));
 };
 exports.default = EtDateViewer;

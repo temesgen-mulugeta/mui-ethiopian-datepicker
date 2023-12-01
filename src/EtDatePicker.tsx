@@ -13,9 +13,10 @@ import React from "react";
 import format from "date-fns/format";
 import { EventOutlined } from "@mui/icons-material";
 import { EtDatePickerProvider } from "./EtDatePickerContext";
-import { DateType, EthiopianDate } from "./util/EthiopianDateUtils";
+import { DateType, EtLocal, EthiopianDate } from "./util/EthiopianDateUtils";
 import { DatePicker } from "@mui/x-date-pickers";
 import EtGrDateCalendar from "./Components/EtGrDateCalendar";
+import { useEtLocalization } from "./EtLocalizationProvider";
 
 type CustomFieldProps = Omit<
   React.ComponentProps<typeof TextField>,
@@ -31,17 +32,16 @@ type EtDatePickerProps = {
   onClick?: () => void;
   value?: Date | null;
   onChange?: (date: Date) => void;
-  onChangeDateType?: (dateType: DateType) => void;
 } & CustomFieldProps &
   EtDateFieldProps;
 const EtDatePicker: React.FC<EtDatePickerProps> = ({
   onClick,
-  onChangeDateType,
   value,
   onChange,
   ...props
 }) => {
-  const [dateType, setDateType] = useState<DateType>("EC");
+  const { localType, getLocalMonthName } = useEtLocalization();
+  const [dateType, setDateType] = useState<DateType>(localType);
   const [date, setDate] = useState<Date>();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -74,9 +74,8 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
   };
 
   const handleDateTypeChange = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const newDateType = dateType === "GC" ? "EC" : "GC";
+    const newDateType = dateType === "GC" ? localType : "GC";
     setDateType(newDateType);
-    onChangeDateType?.(newDateType);
     event.stopPropagation();
   };
 
@@ -94,7 +93,11 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
           date
             ? dateType === "GC"
               ? format(date, "dd/MMM/yyyy")
-              : EthiopianDate.formatEtDate(EthiopianDate.toEth(date))
+              : EthiopianDate.formatEtDate(
+                  EthiopianDate.toEth(date),
+                  localType,
+                  getLocalMonthName
+                )
             : "-"
         }
         InputProps={{
@@ -107,7 +110,7 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
             <InputAdornment position="start">
               <ButtonBase onClick={handleDateTypeChange}>
                 <Typography fontWeight={700} color="primary">
-                  {dateType}
+                  {dateType === "CUSTOM" ? "CU" : dateType}
                 </Typography>
               </ButtonBase>
             </InputAdornment>

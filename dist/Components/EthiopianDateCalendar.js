@@ -33,11 +33,13 @@ const EthiopianYearList_1 = __importDefault(require("./EthiopianYearList"));
 const EthiopianDaysList_1 = __importDefault(require("./EthiopianDaysList"));
 const EtDatePickerContext_1 = require("../EtDatePickerContext");
 const EthiopianDateUtils_1 = require("../util/EthiopianDateUtils");
+const EtLocalizationProvider_1 = require("../EtLocalizationProvider");
 const EthiopianDateCalendar = () => {
     const { onDateChange, value } = (0, react_1.useContext)(EtDatePickerContext_1.EtDatePickerContext);
     const today = EthiopianDateUtils_1.EthiopianDate.toEth(new Date());
     const [ethDate, setEthDate] = (0, react_1.useState)(today);
     const [showYearList, setShowYearList] = (0, react_1.useState)(false);
+    const { localType } = (0, EtLocalizationProvider_1.useEtLocalization)();
     const incrementMonth = () => {
         if (ethDate.Month === 13) {
             setEthDate(Object.assign(Object.assign({}, ethDate), { Month: 1, Year: ethDate.Year + 1 }));
@@ -68,7 +70,7 @@ const EthiopianDateCalendar = () => {
                         cursor: "pointer",
                     },
                 }, onClick: () => setShowYearList(!showYearList) },
-                react_1.default.createElement(material_1.Typography, null, `${EthiopianDateUtils_1.EthiopianDate.getEtMonthName(ethDate.Month)} ${ethDate.Year}`),
+                react_1.default.createElement(material_1.Typography, null, `${EthiopianDateUtils_1.EthiopianDate.getEtMonthName(ethDate.Month, localType)} ${ethDate.Year}`),
                 react_1.default.createElement(material_1.IconButton, { size: "small" }, showYearList ? react_1.default.createElement(icons_material_1.ArrowDropUp, null) : react_1.default.createElement(icons_material_1.ArrowDropDown, null))),
             react_1.default.createElement(material_1.Box, { sx: { display: "flex" } },
                 react_1.default.createElement(material_1.IconButton, { size: "small", onClick: decrementMonth },
