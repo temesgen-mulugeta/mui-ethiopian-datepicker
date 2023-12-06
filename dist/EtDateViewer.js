@@ -22,13 +22,25 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
 const date_fns_1 = require("date-fns");
 const EthiopianDateUtils_1 = require("./util/EthiopianDateUtils");
 const EtLocalizationProvider_1 = require("./EtLocalizationProvider");
-const EtDateViewer = ({ date, initialDateType, disableSwitcher, }) => {
+const EtDateViewer = (_a) => {
+    var { date, initialDateType, disableSwitcher } = _a, props = __rest(_a, ["date", "initialDateType", "disableSwitcher"]);
     const [dateType, setDateType] = (0, react_1.useState)(initialDateType !== null && initialDateType !== void 0 ? initialDateType : "AMH");
     const { localType, getLocalMonthName } = (0, EtLocalizationProvider_1.useEtLocalization)();
     const handleDateTypeChange = (event) => {
@@ -38,8 +50,8 @@ const EtDateViewer = ({ date, initialDateType, disableSwitcher, }) => {
     };
     return (react_1.default.createElement(material_1.Stack, { direction: "row", spacing: 0.7 },
         !disableSwitcher && (react_1.default.createElement(material_1.ButtonBase, { onClick: handleDateTypeChange },
-            react_1.default.createElement(material_1.Typography, { fontWeight: 700, color: "primary" }, localType === "CUSTOM" ? "CU" : localType))),
-        react_1.default.createElement(material_1.Typography, null, localType === "EN"
+            react_1.default.createElement(material_1.Typography, Object.assign({ fontWeight: 700, color: "primary" }, props), localType === "CUSTOM" ? "CU" : localType))),
+        react_1.default.createElement(material_1.Typography, Object.assign({}, props), localType === "EN"
             ? (0, date_fns_1.format)(date, "MMM dd/yyyy")
             : EthiopianDateUtils_1.EthiopianDate.formatEtDate(EthiopianDateUtils_1.EthiopianDate.toEth(date), localType !== null && localType !== void 0 ? localType : "AMH", getLocalMonthName))));
 };

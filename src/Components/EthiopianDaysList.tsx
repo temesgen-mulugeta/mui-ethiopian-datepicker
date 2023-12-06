@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { EtDatePickerContext } from "../EtDatePickerContext";
 import { EthiopianDate } from "../util/EthiopianDateUtils";
+import { useEtLocalization } from "../EtLocalizationProvider";
 
 type EthiopianDaysListProps = {
   month: number;
@@ -13,9 +14,13 @@ const EthiopianDaysList: React.FC<EthiopianDaysListProps> = ({
   month,
   year,
 }) => {
+  const { localType } = useEtLocalization();
   const cellSize = "36px";
   const gap = 0.5;
-  const days = EthiopianDate.shortDays;
+  const days =
+    localType === "AMH" || localType === "EN"
+      ? EthiopianDate.shortDays
+      : EthiopianDate.englishShortDays;
   const today = EthiopianDate.toEth(new Date());
   const { onDateChange, value, disableFuture, disablePast, minDate, maxDate } =
     useContext(EtDatePickerContext);

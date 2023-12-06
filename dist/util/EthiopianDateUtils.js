@@ -5,6 +5,7 @@ exports.EthiopianDate = void 0;
 var EthiopianDate;
 (function (EthiopianDate) {
     EthiopianDate.shortDays = ["ሰ", "ማ", "እ", "ሐ", "አ", "ቅ", "እ"];
+    EthiopianDate.englishShortDays = ["M", "T", "W", "T", "F", "S", "S"];
     EthiopianDate.longDays = ["ሰኞ", "ማክሰኞ", "እሮብ", "ሐሙስ", "አርብ", "ቅዳሜ", "እሁድ"];
     EthiopianDate.ethMonths = [
         "መስከረም",

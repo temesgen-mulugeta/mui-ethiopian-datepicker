@@ -62,7 +62,7 @@ const EthiopianDateCalendar = () => {
         }
     }, [value]);
     return (react_1.default.createElement(material_1.Box, { mx: 2 },
-        react_1.default.createElement(material_1.Stack, { direction: "row", justifyContent: "space-between", m: 2 },
+        react_1.default.createElement(material_1.Stack, { direction: "row", display: "flex", justifyContent: "space-between", m: 2 },
             react_1.default.createElement(material_1.Box, { sx: {
                     display: "flex",
                     alignItems: "center",

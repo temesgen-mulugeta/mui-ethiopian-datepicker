@@ -1,7 +1,7 @@
 
 # MUI Ethiopian DatePicker
 
-Current Version: 0.2.4
+Current Version: 0.2.5
 
 `mui-ethiopian-datepicker` is a React component for selecting Ethiopian dates. It's built on top of Material-UI and provides a culturally tailored date picker experience integrated seamlessly with other MUI components.
 
@@ -122,6 +122,8 @@ function MyApp() {
 
 ```tsx
 import { EtDateViewer } from "mui-ethiopian-datepicker";
+
+<EtDateViewer date={new Date()}  sx={{ color: "red" }} variant="h6" />
 
 ```
 

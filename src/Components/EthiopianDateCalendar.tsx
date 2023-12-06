@@ -48,7 +48,12 @@ const EthiopianDateCalendar = () => {
 
   return (
     <Box mx={2}>
-      <Stack direction="row" justifyContent="space-between" m={2}>
+      <Stack
+        direction="row"
+        display="flex"
+        justifyContent="space-between"
+        m={2}
+      >
         <Box
           sx={{
             display: "flex",

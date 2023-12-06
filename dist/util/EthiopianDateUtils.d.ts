@@ -1,6 +1,7 @@
 export type DateType = "EN" | "AMH" | "AO" | "CUSTOM";
 export declare namespace EthiopianDate {
     const shortDays: string[];
+    const englishShortDays: string[];
     const longDays: string[];
     const ethMonths: string[];
     const AoMonths: string[];

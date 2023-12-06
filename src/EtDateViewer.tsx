@@ -1,4 +1,4 @@
-import { ButtonBase, Stack, Typography } from "@mui/material";
+import { ButtonBase, Stack, Typography, TypographyProps } from "@mui/material";
 import React, { useState } from "react";
 import { format } from "date-fns";
 import { DateType, EthiopianDate } from "./util/EthiopianDateUtils";
@@ -8,12 +8,13 @@ type EtDateViewerProps = {
   date: Date;
   initialDateType?: DateType;
   disableSwitcher?: boolean;
-};
+} & TypographyProps;
 
 const EtDateViewer: React.FC<EtDateViewerProps> = ({
   date,
   initialDateType,
   disableSwitcher,
+  ...props
 }) => {
   const [dateType, setDateType] = useState<DateType>(initialDateType ?? "AMH");
   const { localType, getLocalMonthName } = useEtLocalization();
@@ -27,12 +28,12 @@ const EtDateViewer: React.FC<EtDateViewerProps> = ({
     <Stack direction="row" spacing={0.7}>
       {!disableSwitcher && (
         <ButtonBase onClick={handleDateTypeChange}>
-          <Typography fontWeight={700} color="primary">
+          <Typography fontWeight={700} color="primary" {...props}>
             {localType === "CUSTOM" ? "CU" : localType}
           </Typography>
         </ButtonBase>
       )}
-      <Typography>
+      <Typography {...props}>
         {localType === "EN"
           ? format(date, "MMM dd/yyyy")
           : EthiopianDate.formatEtDate(

@@ -27,10 +27,14 @@ const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
 const EtDatePickerContext_1 = require("../EtDatePickerContext");
 const EthiopianDateUtils_1 = require("../util/EthiopianDateUtils");
+const EtLocalizationProvider_1 = require("../EtLocalizationProvider");
 const EthiopianDaysList = ({ month, year, }) => {
+    const { localType } = (0, EtLocalizationProvider_1.useEtLocalization)();
     const cellSize = "36px";
     const gap = 0.5;
-    const days = EthiopianDateUtils_1.EthiopianDate.shortDays;
+    const days = localType === "AMH" || localType === "EN"
+        ? EthiopianDateUtils_1.EthiopianDate.shortDays
+        : EthiopianDateUtils_1.EthiopianDate.englishShortDays;
     const today = EthiopianDateUtils_1.EthiopianDate.toEth(new Date());
     const { onDateChange, value, disableFuture, disablePast, minDate, maxDate } = (0, react_1.useContext)(EtDatePickerContext_1.EtDatePickerContext);
     const [selectedDate, setSelectedDate] = (0, react_1.useState)(value ? EthiopianDateUtils_1.EthiopianDate.toEth(value) : null);
