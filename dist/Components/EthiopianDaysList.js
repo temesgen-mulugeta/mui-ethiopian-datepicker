@@ -36,7 +36,7 @@ const EthiopianDaysList = ({ month, year, }) => {
         ? EthiopianDateUtils_1.EthiopianDate.shortDays
         : EthiopianDateUtils_1.EthiopianDate.englishShortDays;
     const today = EthiopianDateUtils_1.EthiopianDate.toEth(new Date());
-    const { onDateChange, value, disableFuture, disablePast, minDate, maxDate } = (0, react_1.useContext)(EtDatePickerContext_1.EtDatePickerContext);
+    const { onDateChange, setGregDate, value, disableFuture, disablePast, minDate, maxDate, } = (0, react_1.useContext)(EtDatePickerContext_1.EtDatePickerContext);
     const [selectedDate, setSelectedDate] = (0, react_1.useState)(value ? EthiopianDateUtils_1.EthiopianDate.toEth(value) : null);
     const getEtDate = (day) => {
         return { Day: day, Month: month, Year: year };
@@ -94,6 +94,7 @@ const EthiopianDaysList = ({ month, year, }) => {
                 const etDate = EthiopianDateUtils_1.EthiopianDate.createEthiopianDateFromParts(index + 1, month, year);
                 const grDate = EthiopianDateUtils_1.EthiopianDate.toGreg(etDate);
                 onDateChange(grDate);
+                setGregDate(grDate);
             }, sx: {
                 width: cellSize,
                 height: cellSize,

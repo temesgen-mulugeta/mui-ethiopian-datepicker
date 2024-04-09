@@ -22,8 +22,15 @@ const EthiopianDaysList: React.FC<EthiopianDaysListProps> = ({
       ? EthiopianDate.shortDays
       : EthiopianDate.englishShortDays;
   const today = EthiopianDate.toEth(new Date());
-  const { onDateChange, value, disableFuture, disablePast, minDate, maxDate } =
-    useContext(EtDatePickerContext);
+  const {
+    onDateChange,
+    setGregDate,
+    value,
+    disableFuture,
+    disablePast,
+    minDate,
+    maxDate,
+  } = useContext(EtDatePickerContext);
 
   const [selectedDate, setSelectedDate] = useState<EthiopianDate.EtDate | null>(
     value ? EthiopianDate.toEth(value) : null
@@ -131,6 +138,7 @@ const EthiopianDaysList: React.FC<EthiopianDaysListProps> = ({
                 );
                 const grDate = EthiopianDate.toGreg(etDate);
                 onDateChange(grDate);
+                setGregDate(grDate);
               }}
               sx={{
                 width: cellSize,

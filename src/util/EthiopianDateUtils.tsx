@@ -3,9 +3,9 @@ export type DateType = "EN" | "AMH" | "AO" | "CUSTOM";
 // export type EtLocal = "AMH" | "AO" | "CUSTOM";
 
 export namespace EthiopianDate {
-  export const shortDays = ["ሰ", "ማ", "እ", "ሐ", "አ", "ቅ", "እ"]; 
-   export const englishShortDays = ["M", "T", "W", "T", "F", "S", "S"];
-  export const longDays = ["ሰኞ", "ማክሰኞ", "እሮብ", "ሐሙስ", "አርብ", "ቅዳሜ", "እሁድ"];
+  export const shortDays = ["ሰ", "ማ", "ረ", "ሐ", "ዓ", "ቅ", "እ"];
+  export const englishShortDays = ["M", "T", "W", "T", "F", "S", "S"];
+  export const longDays = ["ሰኞ", "ማክሰኞ", "ረቡዕ", "ሐሙስ", "ዓርብ", "ቅዳሜ", "እሁድ"];
   export const ethMonths = [
     "መስከረም",
     "ጥቅምት",

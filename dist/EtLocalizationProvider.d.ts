@@ -5,7 +5,7 @@ type LocalizationContextProps = {
     setLocalType: React.Dispatch<React.SetStateAction<DateType>>;
     getLocalMonthName?: (month: number) => string;
 };
-type LocalizationProviderProps = {
+export type LocalizationProviderProps = {
     children: ReactNode;
     locale?: DateType;
     getLocalMonthName?: (month: number) => string;
