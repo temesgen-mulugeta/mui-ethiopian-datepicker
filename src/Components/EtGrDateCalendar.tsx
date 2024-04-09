@@ -35,7 +35,9 @@ const EtGrDateCalendar = () => {
   };
 
   return (
+
     <Box sx={{ minWidth: 610 }}>
+
       <Box display={"flex"}>
         <Box width={295} display="flex" flexDirection="column">
           <EthiopianDateCalendar />
@@ -53,14 +55,17 @@ const EtGrDateCalendar = () => {
           </Box>
         </Box>
         <Divider orientation="vertical" flexItem />
+
+        <Box width={295}>
+
         <Box width={295} pr={4}>
+
           <DateCalendar
             monthsPerRow={3}
             value={gregDatePicker}
             onChange={(date) => {
               if (date && date instanceof Date) onDateChange(date);
             }}
-            // sx={{ mr: 2 }}
             disableFuture={disableFuture}
             onMonthChange={(date) => {
               const newDate = new Date(date);
