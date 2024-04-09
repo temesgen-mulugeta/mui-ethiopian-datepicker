@@ -15,7 +15,8 @@ const defaultState: LocalizationContextProps = {
 const EtLocalizationContext =
   createContext<LocalizationContextProps>(defaultState);
 
-type LocalizationProviderProps = {
+
+export type LocalizationProviderProps = {
   children: ReactNode;
   locale?: DateType;
   getLocalMonthName?: (month: number) => string;

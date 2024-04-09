@@ -42,17 +42,17 @@ const EtLocalizationProvider_1 = require("./EtLocalizationProvider");
 const EtDateViewer = (_a) => {
     var { date, initialDateType, disableSwitcher } = _a, props = __rest(_a, ["date", "initialDateType", "disableSwitcher"]);
     const [dateType, setDateType] = (0, react_1.useState)(initialDateType !== null && initialDateType !== void 0 ? initialDateType : "AMH");
-    const { localType, getLocalMonthName } = (0, EtLocalizationProvider_1.useEtLocalization)();
+    const { localType, getLocalMonthName, } = (0, EtLocalizationProvider_1.useEtLocalization)();
     const handleDateTypeChange = (event) => {
+        event.stopPropagation();
         const newDateType = dateType === "EN" ? localType : "EN";
         setDateType(newDateType !== null && newDateType !== void 0 ? newDateType : "EN");
-        event.stopPropagation();
     };
     return (react_1.default.createElement(material_1.Stack, { direction: "row", spacing: 0.7 },
         !disableSwitcher && (react_1.default.createElement(material_1.ButtonBase, { onClick: handleDateTypeChange },
-            react_1.default.createElement(material_1.Typography, Object.assign({ fontWeight: 700, color: "primary" }, props), localType === "CUSTOM" ? "CU" : localType))),
-        react_1.default.createElement(material_1.Typography, Object.assign({}, props), localType === "EN"
+            react_1.default.createElement(material_1.Typography, Object.assign({ fontWeight: 700, color: "primary" }, props), dateType === "CUSTOM" ? "CU" : dateType))),
+        react_1.default.createElement(material_1.Typography, Object.assign({}, props), dateType === "EN"
             ? (0, date_fns_1.format)(date, "MMM dd/yyyy")
-            : EthiopianDateUtils_1.EthiopianDate.formatEtDate(EthiopianDateUtils_1.EthiopianDate.toEth(date), localType !== null && localType !== void 0 ? localType : "AMH", getLocalMonthName))));
+            : EthiopianDateUtils_1.EthiopianDate.formatEtDate(EthiopianDateUtils_1.EthiopianDate.toEth(date), dateType !== null && dateType !== void 0 ? dateType : "AMH", getLocalMonthName))));
 };
 exports.default = EtDateViewer;

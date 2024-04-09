@@ -4,6 +4,7 @@ import { DateCalendar } from "@mui/x-date-pickers";
 import { useContext, useEffect, useState } from "react";
 import EthiopianDateCalendar from "./EthiopianDateCalendar";
 import { EtDatePickerContext } from "../EtDatePickerContext";
+import React from "react";
 
 const EtGrDateCalendar = () => {
   const etDatePickerContext = useContext(EtDatePickerContext);
@@ -34,7 +35,9 @@ const EtGrDateCalendar = () => {
   };
 
   return (
-    <Box sx={{ width: 600 }}>
+
+    <Box sx={{ minWidth: 610 }}>
+
       <Box display={"flex"}>
         <Box width={295} display="flex" flexDirection="column">
           <EthiopianDateCalendar />
@@ -52,14 +55,17 @@ const EtGrDateCalendar = () => {
           </Box>
         </Box>
         <Divider orientation="vertical" flexItem />
+
         <Box width={295}>
+
+        <Box width={295} pr={4}>
+
           <DateCalendar
             monthsPerRow={3}
             value={gregDatePicker}
             onChange={(date) => {
               if (date && date instanceof Date) onDateChange(date);
             }}
-            sx={{ mr: 1 }}
             disableFuture={disableFuture}
             onMonthChange={(date) => {
               const newDate = new Date(date);

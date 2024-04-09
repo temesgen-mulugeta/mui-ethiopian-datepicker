@@ -29,23 +29,37 @@ const x_date_pickers_1 = require("@mui/x-date-pickers");
 const AdapterDateFns_1 = require("@mui/x-date-pickers/AdapterDateFns");
 const EtDatePickerContext = (0, react_1.createContext)({
     value: new Date(),
+    monthValue: new Date(),
+    gregDate: new Date(),
+    setGregDate: (date) => { },
+    onMonthChange: (date) => { },
     onDateChange: (date) => { },
 });
 exports.EtDatePickerContext = EtDatePickerContext;
 const EtDatePickerProvider = ({ children, onChange, value, disableFuture, disablePast, minDate, maxDate, }) => {
     const [date, setDate] = (0, react_1.useState)();
+    const [monthValue, setMonthValue] = (0, react_1.useState)();
+    const [gregDate, setGregDate] = (0, react_1.useState)();
     const onDateChange = (date) => {
         setDate(date);
         onChange === null || onChange === void 0 ? void 0 : onChange(date);
     };
+    const onMonthChange = (date) => {
+        setMonthValue(date);
+    };
     (0, react_1.useEffect)(() => {
         if (value) {
             setDate(value);
+            setGregDate(value);
         }
     }, [value]);
     return (react_1.default.createElement(x_date_pickers_1.LocalizationProvider, { dateAdapter: AdapterDateFns_1.AdapterDateFns },
         react_1.default.createElement(EtDatePickerContext.Provider, { value: {
                 value: date !== null && date !== void 0 ? date : undefined,
+                monthValue: monthValue,
+                gregDate: gregDate,
+                setGregDate,
+                onMonthChange,
                 onDateChange,
                 disableFuture,
                 disablePast,

@@ -4,9 +4,9 @@ exports.EthiopianDate = void 0;
 // export type EtLocal = "AMH" | "AO" | "CUSTOM";
 var EthiopianDate;
 (function (EthiopianDate) {
-    EthiopianDate.shortDays = ["ሰ", "ማ", "እ", "ሐ", "አ", "ቅ", "እ"];
+    EthiopianDate.shortDays = ["ሰ", "ማ", "ረ", "ሐ", "ዓ", "ቅ", "እ"];
     EthiopianDate.englishShortDays = ["M", "T", "W", "T", "F", "S", "S"];
-    EthiopianDate.longDays = ["ሰኞ", "ማክሰኞ", "እሮብ", "ሐሙስ", "አርብ", "ቅዳሜ", "እሁድ"];
+    EthiopianDate.longDays = ["ሰኞ", "ማክሰኞ", "ረቡዕ", "ሐሙስ", "ዓርብ", "ቅዳሜ", "እሁድ"];
     EthiopianDate.ethMonths = [
         "መስከረም",
         "ጥቅምት",
