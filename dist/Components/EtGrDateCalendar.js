@@ -23,7 +23,7 @@ const EtGrDateCalendar = () => {
     const handleTodayButtonClick = () => {
         onDateChange(new Date());
     };
-    return (react_2.default.createElement(material_1.Box, { sx: {} },
+    return (react_2.default.createElement(material_1.Box, { sx: { minWidth: 610 } },
         react_2.default.createElement(material_1.Box, { display: "flex" },
             react_2.default.createElement(material_1.Box, { width: 295, display: "flex", flexDirection: "column" },
                 react_2.default.createElement(EthiopianDateCalendar_1.default, null),

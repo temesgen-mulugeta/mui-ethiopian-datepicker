@@ -35,7 +35,7 @@ const EtGrDateCalendar = () => {
   };
 
   return (
-    <Box sx={{ }}>
+    <Box sx={{ minWidth: 610 }}>
       <Box display={"flex"}>
         <Box width={295} display="flex" flexDirection="column">
           <EthiopianDateCalendar />
