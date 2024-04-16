@@ -34,18 +34,17 @@ const EtGrDateCalendar = () => {
                     } },
                     react_2.default.createElement(material_1.Button, { sx: { ml: 2 }, onClick: handleTodayButtonClick }, "Today"))),
             react_2.default.createElement(material_1.Divider, { orientation: "vertical", flexItem: true }),
-            react_2.default.createElement(material_1.Box, { width: 295, pr: 4 },
-                react_2.default.createElement(x_date_pickers_1.DateCalendar, { monthsPerRow: 3, value: gregDatePicker, onChange: (date) => {
-                        if (date && date instanceof Date)
-                            onDateChange(date);
-                    }, 
-                    // sx={{ mr: 2 }}
-                    disableFuture: disableFuture, onMonthChange: (date) => {
-                        var _a;
-                        const newDate = new Date(date);
-                        newDate.setDate((_a = gregDate === null || gregDate === void 0 ? void 0 : gregDate.getDate()) !== null && _a !== void 0 ? _a : 15);
-                        onMonthChange(newDate);
-                        setGregDate(newDate);
-                    }, disablePast: disablePast, minDate: minDate, maxDate: maxDate })))));
+            react_2.default.createElement(material_1.Box, { width: 295 },
+                react_2.default.createElement(material_1.Box, { width: 295, pr: 4 },
+                    react_2.default.createElement(x_date_pickers_1.DateCalendar, { monthsPerRow: 3, value: gregDatePicker, onChange: (date) => {
+                            if (date && date instanceof Date)
+                                onDateChange(date);
+                        }, disableFuture: disableFuture, onMonthChange: (date) => {
+                            var _a;
+                            const newDate = new Date(date);
+                            newDate.setDate((_a = gregDate === null || gregDate === void 0 ? void 0 : gregDate.getDate()) !== null && _a !== void 0 ? _a : 15);
+                            onMonthChange(newDate);
+                            setGregDate(newDate);
+                        }, disablePast: disablePast, minDate: minDate, maxDate: maxDate }))))));
 };
 exports.default = EtGrDateCalendar;
