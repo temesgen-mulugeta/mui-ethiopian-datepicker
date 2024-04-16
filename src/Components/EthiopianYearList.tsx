@@ -1,3 +1,4 @@
+
 import { Grid, Chip, Box } from "@mui/material";
 import React, { useContext, useEffect, useRef } from "react";
 import { EthiopianDate } from "../util/EthiopianDateUtils";
@@ -58,6 +59,7 @@ const EthiopianYearList: React.FC<EthiopianYearListProps> = ({
       sx={{
         overflowY: "scroll",
         maxHeight: "270px",
+
         scrollbarWidth: "7px",
         "&::-webkit-scrollbar": {
           width: "7px",
@@ -69,6 +71,7 @@ const EthiopianYearList: React.FC<EthiopianYearListProps> = ({
         },
         "&::-webkit-scrollbar-track": {
           backgroundColor: "transparent",
+
         },
       }}
     >

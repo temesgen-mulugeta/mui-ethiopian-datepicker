@@ -16,13 +16,15 @@ const EtDateViewer: React.FC<EtDateViewerProps> = ({
   disableSwitcher,
   ...props
 }) => {
-  const [dateType, setDateType] = useState<DateType>(initialDateType ?? "AMH");
-  const { localType, getLocalMonthName, } = useEtLocalization();
+  const { localType, getLocalMonthName } = useEtLocalization();
+  const [dateType, setDateType] = useState<DateType>(
+    initialDateType ?? localType
+  );
 
   const handleDateTypeChange = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     const newDateType = dateType === "EN" ? localType : "EN";
-    
+
     setDateType(newDateType ?? "EN");
   };
 
@@ -40,7 +42,7 @@ const EtDateViewer: React.FC<EtDateViewerProps> = ({
           ? format(date, "MMM dd/yyyy")
           : EthiopianDate.formatEtDate(
               EthiopianDate.toEth(date),
-              dateType ?? "AMH",
+              dateType ?? localType,
               getLocalMonthName
             )}
       </Typography>
