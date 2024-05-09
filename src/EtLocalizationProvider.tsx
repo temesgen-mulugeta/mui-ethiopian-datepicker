@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import { DateType } from "./util/EthiopianDateUtils";
 
 type LocalizationContextProps = {
@@ -15,7 +21,6 @@ const defaultState: LocalizationContextProps = {
 const EtLocalizationContext =
   createContext<LocalizationContextProps>(defaultState);
 
-
 export type LocalizationProviderProps = {
   children: ReactNode;
   locale?: DateType;
@@ -28,6 +33,10 @@ export const EtLocalizationProvider: React.FC<LocalizationProviderProps> = ({
   getLocalMonthName,
 }) => {
   const [localType, setLocalType] = useState<DateType>(locale);
+
+  useEffect(() => {
+    setLocalType(locale);
+  }, [locale]);
 
   return (
     <EtLocalizationContext.Provider
