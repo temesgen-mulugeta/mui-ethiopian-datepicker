@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 export type DateType = "EN" | "AMH" | "AO" | "CUSTOM";
 
 // export type EtLocal = "AMH" | "AO" | "CUSTOM";
@@ -208,7 +210,8 @@ export namespace EthiopianDate {
   export function formatEtDate(
     dt: EtDate,
     locale: DateType,
-    getLocalMonth?: (month: number) => string
+    getLocalMonth?: (month: number) => string,
+    time?: number
   ) {
     let month = "";
     switch (locale) {
@@ -224,7 +227,12 @@ export namespace EthiopianDate {
       default:
         break;
     }
-    return `${month} ${dt.Day}/${dt.Year}`;
+    return time
+      ? `${month} ${dt.Day}/${dt.Year}  ${format(
+          new Date(time - 6 * 60 * 60 * 1000),
+          "hh:mm a"
+        )}`
+      : `${month} ${dt.Day}/${dt.Year}`;
   }
 
   export function formatGrDateToEtDate(date: Date) {
