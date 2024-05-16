@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EthiopianDate = void 0;
+const date_fns_1 = require("date-fns");
 // export type EtLocal = "AMH" | "AO" | "CUSTOM";
 var EthiopianDate;
 (function (EthiopianDate) {
@@ -175,7 +176,7 @@ var EthiopianDate;
         return grigorianDateFromDayNo(getDayNoEthiopian(et) + 2431);
     }
     EthiopianDate.toGreg = toGreg;
-    function formatEtDate(dt, locale, getLocalMonth) {
+    function formatEtDate(dt, locale, getLocalMonth, time) {
         var _a;
         let month = "";
         switch (locale) {
@@ -191,7 +192,9 @@ var EthiopianDate;
             default:
                 break;
         }
-        return `${month} ${dt.Day}/${dt.Year}`;
+        return time
+            ? `${month} ${dt.Day}/${dt.Year}  ${(0, date_fns_1.format)(new Date(time - 6 * 60 * 60 * 1000), "hh:mm a")}`
+            : `${month} ${dt.Day}/${dt.Year}`;
     }
     EthiopianDate.formatEtDate = formatEtDate;
     function formatGrDateToEtDate(date) {

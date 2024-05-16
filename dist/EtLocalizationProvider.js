@@ -32,6 +32,9 @@ const defaultState = {
 const EtLocalizationContext = (0, react_1.createContext)(defaultState);
 const EtLocalizationProvider = ({ children, locale = "AMH", getLocalMonthName, }) => {
     const [localType, setLocalType] = (0, react_1.useState)(locale);
+    (0, react_1.useEffect)(() => {
+        setLocalType(locale);
+    }, [locale]);
     return (react_1.default.createElement(EtLocalizationContext.Provider, { value: { localType, setLocalType, getLocalMonthName } }, children));
 };
 exports.EtLocalizationProvider = EtLocalizationProvider;
