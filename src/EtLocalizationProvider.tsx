@@ -11,6 +11,9 @@ type LocalizationContextProps = {
   localType: DateType;
   setLocalType: React.Dispatch<React.SetStateAction<DateType>>;
   getLocalMonthName?: (month: number) => string;
+  disableEt?: boolean;
+  disableGregorian?: boolean;
+  disableSwitcher?: boolean;
 };
 
 const defaultState: LocalizationContextProps = {
@@ -25,12 +28,18 @@ export type LocalizationProviderProps = {
   children: ReactNode;
   locale?: DateType;
   getLocalMonthName?: (month: number) => string;
+  disableEt?: boolean;
+  disableGregorian?: boolean;
+  disableSwitcher?: boolean;
 };
 
 export const EtLocalizationProvider: React.FC<LocalizationProviderProps> = ({
   children,
   locale = "AMH",
   getLocalMonthName,
+  disableEt,
+  disableGregorian,
+  disableSwitcher,
 }) => {
   const [localType, setLocalType] = useState<DateType>(locale);
 
@@ -40,7 +49,14 @@ export const EtLocalizationProvider: React.FC<LocalizationProviderProps> = ({
 
   return (
     <EtLocalizationContext.Provider
-      value={{ localType, setLocalType, getLocalMonthName }}
+      value={{
+        localType,
+        setLocalType,
+        getLocalMonthName,
+        disableEt,
+        disableGregorian,
+        disableSwitcher,
+      }}
     >
       {children}
     </EtLocalizationContext.Provider>
@@ -52,5 +68,11 @@ export const useEtLocalization = () => {
 
   if (context) return context;
   const local: DateType = "AMH";
-  return { localType: local, getLocalMonthName: (m: number) => "" };
+  return {
+    localType: local,
+    getLocalMonthName: (m: number) => "",
+    disableEt: false,
+    disableGregorian: false,
+    disableSwitcher: false,
+  };
 };

@@ -30,9 +30,10 @@ const EtDateViewer: React.FC<EtDateViewerProps> = ({
     setDateType(newDateType ?? "EN");
   };
 
+  const { disableSwitcher: disableSwitch } = useEtLocalization();
   return (
     <Stack direction="row" spacing={0.7}>
-      {!disableSwitcher && (
+      {!disableSwitcher && !disableSwitch && (
         <ButtonBase onClick={handleDateTypeChange}>
           <Typography fontWeight={700} color="primary" {...props}>
             {dateType === "CUSTOM" ? "CU" : dateType}

@@ -30,12 +30,19 @@ const defaultState = {
     setLocalType: () => { },
 };
 const EtLocalizationContext = (0, react_1.createContext)(defaultState);
-const EtLocalizationProvider = ({ children, locale = "AMH", getLocalMonthName, }) => {
+const EtLocalizationProvider = ({ children, locale = "AMH", getLocalMonthName, disableEt, disableGregorian, disableSwitcher, }) => {
     const [localType, setLocalType] = (0, react_1.useState)(locale);
     (0, react_1.useEffect)(() => {
         setLocalType(locale);
     }, [locale]);
-    return (react_1.default.createElement(EtLocalizationContext.Provider, { value: { localType, setLocalType, getLocalMonthName } }, children));
+    return (react_1.default.createElement(EtLocalizationContext.Provider, { value: {
+            localType,
+            setLocalType,
+            getLocalMonthName,
+            disableEt,
+            disableGregorian,
+            disableSwitcher,
+        } }, children));
 };
 exports.EtLocalizationProvider = EtLocalizationProvider;
 const useEtLocalization = () => {
@@ -43,6 +50,12 @@ const useEtLocalization = () => {
     if (context)
         return context;
     const local = "AMH";
-    return { localType: local, getLocalMonthName: (m) => "" };
+    return {
+        localType: local,
+        getLocalMonthName: (m) => "",
+        disableEt: false,
+        disableGregorian: false,
+        disableSwitcher: false,
+    };
 };
 exports.useEtLocalization = useEtLocalization;

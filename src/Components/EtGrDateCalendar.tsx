@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import EthiopianDateCalendar from "./EthiopianDateCalendar";
 import { EtDatePickerContext } from "../EtDatePickerContext";
 import React from "react";
+import { useEtLocalization } from "../EtLocalizationProvider";
 
 const EtGrDateCalendar = () => {
   const etDatePickerContext = useContext(EtDatePickerContext);
@@ -34,47 +35,61 @@ const EtGrDateCalendar = () => {
     onDateChange(new Date());
   };
 
+  const { disableEt, disableGregorian } = useEtLocalization();
+
   return (
-    <Box sx={{ minWidth: 610 }}>
+    <Box sx={{ minWidth: !disableEt && !disableGregorian ? 610 : undefined }}>
       <Box display={"flex"}>
-        <Box width={295} display="flex" flexDirection="column">
-          <EthiopianDateCalendar />
-
+        {!disableEt && (
           <Box
-            sx={{
-              flexGrow: 1,
-              display: "flex",
-              alignItems: "flex-end",
-            }}
+            width={295}
+            display="flex"
+            flexDirection="column"
+            mr={disableGregorian ? 2 : 1}
           >
-            <Button sx={{ ml: 2 }} onClick={handleTodayButtonClick}>
-              Today
-            </Button>
+            <EthiopianDateCalendar />
           </Box>
-        </Box>
-        <Divider orientation="vertical" flexItem />
-
-        <Box width={295}>
-          <Box width={295} pr={4}>
-            <DateCalendar
-              monthsPerRow={3}
-              value={gregDatePicker}
-              onChange={(date) => {
-                if (date && date instanceof Date) onDateChange(date);
-              }}
-              disableFuture={disableFuture}
-              onMonthChange={(date) => {
-                const newDate = new Date(date);
-                newDate.setDate(gregDate?.getDate() ?? 15);
-                onMonthChange(newDate);
-                setGregDate(newDate);
-              }}
-              disablePast={disablePast}
-              minDate={minDate}
-              maxDate={maxDate}
-            />
+        )}
+        {!disableEt && !disableGregorian && (
+          <Divider orientation="vertical" flexItem />
+        )}
+        {!disableGregorian && (
+          <Box width={295} mr={disableEt ? 2 : 0}>
+            <Box width={295} pr={4}>
+              <DateCalendar
+                monthsPerRow={3}
+                value={gregDatePicker}
+                onChange={(date) => {
+                  if (date && date instanceof Date) onDateChange(date);
+                }}
+                disableFuture={disableFuture}
+                onMonthChange={(date) => {
+                  const newDate = new Date(date);
+                  newDate.setDate(gregDate?.getDate() ?? 15);
+                  onMonthChange(newDate);
+                  setGregDate(newDate);
+                }}
+                disablePast={disablePast}
+                minDate={minDate}
+                maxDate={maxDate}
+              />
+            </Box>
           </Box>
-        </Box>
+        )}
+      </Box>
+      <Box
+      // sx={{
+      //   flexGrow: 1,
+      //   display: "flex",
+      //   alignItems: "flex-start",
+      // }}
+      >
+        <Button
+          sx={{ ml: 2, mt: disableGregorian ? 0 : -7 }}
+          onClick={handleTodayButtonClick}
+        >
+          Today
+        </Button>
       </Box>
     </Box>
   );

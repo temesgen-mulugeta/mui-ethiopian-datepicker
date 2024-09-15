@@ -48,8 +48,9 @@ const EtDateViewer = (_a) => {
         const newDateType = dateType === "EN" ? localType : "EN";
         setDateType(newDateType !== null && newDateType !== void 0 ? newDateType : "EN");
     };
+    const { disableSwitcher: disableSwitch } = (0, EtLocalizationProvider_1.useEtLocalization)();
     return (react_1.default.createElement(material_1.Stack, { direction: "row", spacing: 0.7 },
-        !disableSwitcher && (react_1.default.createElement(material_1.ButtonBase, { onClick: handleDateTypeChange },
+        !disableSwitcher && !disableSwitch && (react_1.default.createElement(material_1.ButtonBase, { onClick: handleDateTypeChange },
             react_1.default.createElement(material_1.Typography, Object.assign({ fontWeight: 700, color: "primary" }, props), dateType === "CUSTOM" ? "CU" : dateType))),
         react_1.default.createElement(material_1.Typography, Object.assign({}, props), showTime
             ? dateType === "EN"

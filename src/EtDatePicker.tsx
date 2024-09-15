@@ -79,6 +79,8 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
     event.stopPropagation();
   };
 
+  const { disableSwitcher } = useEtLocalization();
+
   useEffect(() => {
     if (value) {
       setDate(value);
@@ -106,7 +108,7 @@ const EtDatePicker: React.FC<EtDatePickerProps> = ({
             : (event) => {
                 handleClick(event);
               },
-          startAdornment: (
+          startAdornment: disableSwitcher ? undefined : (
             <InputAdornment position="start">
               <ButtonBase onClick={handleDateTypeChange}>
                 <Typography fontWeight={700} color="primary">

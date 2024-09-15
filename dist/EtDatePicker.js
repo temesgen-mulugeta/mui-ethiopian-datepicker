@@ -52,6 +52,7 @@ const EtDatePicker = (_a) => {
         setDateType(newDateType !== null && newDateType !== void 0 ? newDateType : "EN");
         event.stopPropagation();
     };
+    const { disableSwitcher } = (0, EtLocalizationProvider_1.useEtLocalization)();
     (0, react_1.useEffect)(() => {
         if (value) {
             setDate(value);
@@ -68,7 +69,7 @@ const EtDatePicker = (_a) => {
                     : (event) => {
                         handleClick(event);
                     },
-                startAdornment: (react_2.default.createElement(material_1.InputAdornment, { position: "start" },
+                startAdornment: disableSwitcher ? undefined : (react_2.default.createElement(material_1.InputAdornment, { position: "start" },
                     react_2.default.createElement(material_1.ButtonBase, { onClick: handleDateTypeChange },
                         react_2.default.createElement(material_1.Typography, { fontWeight: 700, color: "primary" }, dateType === "CUSTOM" ? "CU" : dateType)))),
                 endAdornment: (react_2.default.createElement(material_1.InputAdornment, { position: "end" },
